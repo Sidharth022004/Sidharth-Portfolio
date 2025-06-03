@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -352,12 +351,19 @@ const Index = () => {
                 <h3 className="text-2xl font-semibold mb-4">Education</h3>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold">Master of Computer Science</h4>
-                    <p className="text-gray-600 dark:text-gray-300">University of Technology • 2020</p>
+                    <h4 className="font-semibold">Bachelor of Computer Applications (BCA)</h4>
+                    <p className="text-gray-600 dark:text-gray-300">DPG Degree College, Haryana (Affiliated with MDU Rohtak)</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">Expected Completion: January 2026</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold">Bachelor of Software Engineering</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Tech Institute • 2018</p>
+                    <h4 className="font-semibold">12th – Arts Vocational</h4>
+                    <p className="text-gray-600 dark:text-gray-300">Sarvodaya Bal Vidyalaya, Dwarka Sector-26, Delhi</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">Completed: January 2023 | Scored: 85%</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">10th Standard</h4>
+                    <p className="text-gray-600 dark:text-gray-300">Gyan Jyoti Public School, Chhawala</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">Completed: January 2021 | Scored: 50%</p>
                   </div>
                 </div>
               </motion.div>
@@ -366,21 +372,13 @@ const Index = () => {
                 <h3 className="text-2xl font-semibold mb-4">Experience</h3>
                 <div className="space-y-6">
                   <div>
-                    <h4 className="font-semibold">Senior Software Developer</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Tech Company Inc. • 2021 - Present</p>
+                    <h4 className="font-semibold">Web Developer Intern</h4>
+                    <p className="text-gray-600 dark:text-gray-300">singleInterface – Gurugram, India</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm mb-2">June 2024 – August 2024</p>
                     <ul className="list-disc list-inside mt-2 space-y-1 text-gray-600 dark:text-gray-300">
-                      <li>Led development of scalable web applications serving 100k+ users</li>
-                      <li>Mentored junior developers and established coding best practices</li>
-                      <li>Implemented CI/CD pipelines reducing deployment time by 60%</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Full Stack Developer</h4>
-                    <p className="text-gray-600 dark:text-gray-300">StartupXYZ • 2019 - 2021</p>
-                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-600 dark:text-gray-300">
-                      <li>Built responsive web applications using React and Node.js</li>
-                      <li>Collaborated with designers to implement pixel-perfect UIs</li>
-                      <li>Optimized application performance improving load times by 40%</li>
+                      <li>Performed detailed website testing across multiple browsers and devices</li>
+                      <li>Detected bugs and resolved them quickly to maintain quality standards</li>
+                      <li>Worked closely with the dev team to apply UI/UX improvements</li>
                     </ul>
                   </div>
                 </div>
@@ -389,7 +387,7 @@ const Index = () => {
               <motion.div variants={cardVariants} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-2xl font-semibold mb-4">Core Qualifications</h3>
                 <div className="flex flex-wrap gap-2">
-                  {['React', 'TypeScript', 'Node.js', 'Python', 'AWS', 'Docker', 'GraphQL', 'MongoDB'].map((skill) => (
+                  {['Web Development', 'Internet of Things', 'Artificial Intelligence'].map((skill) => (
                     <span key={skill} className="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-3 py-1 rounded-full text-sm">
                       {skill}
                     </span>
@@ -400,10 +398,31 @@ const Index = () => {
               <motion.div variants={cardVariants} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-2xl font-semibold mb-4">Certifications</h3>
                 <ul className="space-y-2">
-                  <li>• AWS Certified Solutions Architect</li>
-                  <li>• Google Cloud Professional Developer</li>
-                  <li>• Certified Kubernetes Administrator</li>
+                  <li>• Internshala Student Partner Certificate</li>
+                  <li>• Web Development Internship Certificate</li>
                 </ul>
+              </motion.div>
+
+              <motion.div variants={cardVariants} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-2xl font-semibold mb-4">Personal Information</h3>
+                <div className="grid md:grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p><span className="font-medium">Date of Birth:</span> 02 August 2004</p>
+                    <p><span className="font-medium">Nationality:</span> Indian</p>
+                    <p><span className="font-medium">Marital Status:</span> Single</p>
+                    <p><span className="font-medium">Gender:</span> Male</p>
+                  </div>
+                  <div>
+                    <p className="font-medium mb-2">Interests & Hobbies:</p>
+                    <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-300">
+                      <li>Painting</li>
+                      <li>Internet Surfing</li>
+                      <li>Tech Research & Learning</li>
+                      <li>Social Media</li>
+                      <li>Keeping up with Current Events</li>
+                    </ul>
+                  </div>
+                </div>
               </motion.div>
             </div>
           </motion.div>
