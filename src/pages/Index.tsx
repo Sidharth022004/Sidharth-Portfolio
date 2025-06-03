@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -187,7 +188,7 @@ const Index = () => {
             variants={heroTextVariants}
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Hi, I'm <span className="text-yellow-300">Your Name</span>
+              Hi, I'm <span className="text-yellow-300">Sidharth</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
               A passionate Software Developer building awesome web experiences.
@@ -348,22 +349,37 @@ const Index = () => {
 
             <div className="space-y-8">
               <motion.div variants={cardVariants} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-2xl font-semibold mb-4">Objective</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  I seek challenging opportunities where I can fully use my skills for the success of the organization.
+                </p>
+              </motion.div>
+
+              <motion.div variants={cardVariants} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-2xl font-semibold mb-4">Contact Information</h3>
+                <div className="space-y-2 text-gray-600 dark:text-gray-300">
+                  <p><span className="font-medium">Phone:</span> 9870220973</p>
+                  <p><span className="font-medium">Email:</span> sid240711@gmail.com</p>
+                  <p><span className="font-medium">Address:</span> Vill.Bharthal dwarka sec-26 South West Delhi 110077</p>
+                </div>
+              </motion.div>
+
+              <motion.div variants={cardVariants} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
                 <h3 className="text-2xl font-semibold mb-4">Education</h3>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold">Bachelor of Computer Applications (BCA)</h4>
-                    <p className="text-gray-600 dark:text-gray-300">DPG Degree College, Haryana (Affiliated with MDU Rohtak)</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">Expected Completion: January 2026</p>
+                    <h4 className="font-semibold">Bachelor's of Computer Applications (BCA)</h4>
+                    <p className="text-gray-600 dark:text-gray-300">DPG Degree College (Affiliated with MDU Rohtak Haryana)</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">2023 - 2026 | Pursuing</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold">12th – Arts Vocational</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Sarvodaya Bal Vidyalaya, Dwarka Sector-26, Delhi</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">Completed: January 2023 | Scored: 85%</p>
+                    <h4 className="font-semibold">12th (CBSE)</h4>
+                    <p className="text-gray-600 dark:text-gray-300">Arts Vocational</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">2022 - 2023 | Scored: 85%</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold">10th Standard</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Gyan Jyoti Public School, Chhawala</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">Completed: January 2021 | Scored: 50%</p>
+                    <h4 className="font-semibold">10th Matric (CBSE)</h4>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">2020 - 2021 | Scored: 50%</p>
                   </div>
                 </div>
               </motion.div>
@@ -373,33 +389,115 @@ const Index = () => {
                 <div className="space-y-6">
                   <div>
                     <h4 className="font-semibold">Web Developer Intern</h4>
-                    <p className="text-gray-600 dark:text-gray-300">singleInterface – Gurugram, India</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm mb-2">June 2024 – August 2024</p>
-                    <ul className="list-disc list-inside mt-2 space-y-1 text-gray-600 dark:text-gray-300">
-                      <li>Performed detailed website testing across multiple browsers and devices</li>
-                      <li>Detected bugs and resolved them quickly to maintain quality standards</li>
-                      <li>Worked closely with the dev team to apply UI/UX improvements</li>
-                    </ul>
+                    <p className="text-gray-600 dark:text-gray-300">SingleInterface – Gurugram, India</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm mb-2">24/06/2024 - 06/08/2024</p>
+                    <p className="text-gray-600 dark:text-gray-300 mt-2">
+                      I completed a 1.5 months internship in web development as a frontend tester. My overall experience was good with the team - all my seniors were like mentors and good teachers to me.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Internshala Student Partner</h4>
+                    <p className="text-gray-600 dark:text-gray-300">Internshala</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm mb-2">27/08/2024 - Currently doing</p>
+                    <p className="text-gray-600 dark:text-gray-300 mt-2">
+                      I'm the face of Internshala in my college. They chose me as the face of Internshala Student Partner. I help students find the right courses and internships for them.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">Micro Internship in Digital Marketing</h4>
+                    <p className="text-gray-600 dark:text-gray-300">IBM Skill Build</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">25/03/2024 - 11/04/2024</p>
                   </div>
                 </div>
               </motion.div>
 
               <motion.div variants={cardVariants} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
-                <h3 className="text-2xl font-semibold mb-4">Core Qualifications</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['Web Development', 'Internet of Things', 'Artificial Intelligence'].map((skill) => (
-                    <span key={skill} className="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-3 py-1 rounded-full text-sm">
-                      {skill}
-                    </span>
-                  ))}
+                <h3 className="text-2xl font-semibold mb-4">Skills</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <span>Microsoft Office</span>
+                      <span className="text-indigo-600">100%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                      <div className="bg-indigo-600 h-2 rounded-full w-full"></div>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <span>Collaboration</span>
+                      <span className="text-indigo-600">80%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                      <div className="bg-indigo-600 h-2 rounded-full w-4/5"></div>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <span>Attention to Detail</span>
+                      <span className="text-indigo-600">60%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                      <div className="bg-indigo-600 h-2 rounded-full w-3/5"></div>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <span>Computer Skills</span>
+                      <span className="text-indigo-600">100%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                      <div className="bg-indigo-600 h-2 rounded-full w-full"></div>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
 
               <motion.div variants={cardVariants} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
-                <h3 className="text-2xl font-semibold mb-4">Certifications</h3>
-                <ul className="space-y-2">
-                  <li>• Internshala Student Partner Certificate</li>
-                  <li>• Web Development Internship Certificate</li>
+                <h3 className="text-2xl font-semibold mb-4">Achievements & Awards</h3>
+                <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+                  <li className="flex items-start">
+                    <span className="text-indigo-600 mr-2">•</span>
+                    <div>
+                      <span className="font-medium">Digital Marketing Certificate:</span>
+                      <br />
+                      <span className="text-sm">Digital marketing in 11 hrs tutorial for beginners</span>
+                      <br />
+                      <a href="https://online.publuu.com/525833/1178154" className="text-indigo-600 text-sm hover:underline" target="_blank" rel="noopener noreferrer">View Certificate</a>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-indigo-600 mr-2">•</span>
+                    <div>
+                      <span className="font-medium">Internship Competition Certificate</span>
+                      <br />
+                      <a href="https://online.publuu.com/525833/1178160" className="text-indigo-600 text-sm hover:underline" target="_blank" rel="noopener noreferrer">View Certificate</a>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-indigo-600 mr-2">•</span>
+                    <div>
+                      <span className="font-medium">Certificate of Participation - Spreadsheet Management</span>
+                      <br />
+                      <a href="https://online.publuu.com/525833/1178487" className="text-indigo-600 text-sm hover:underline" target="_blank" rel="noopener noreferrer">View Certificate</a>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-indigo-600 mr-2">•</span>
+                    <div>
+                      <span className="font-medium">Certificate of Participation - Nukkad Natak Eco Holi</span>
+                      <br />
+                      <a href="https://online.publuu.com/525833/1178488" className="text-indigo-600 text-sm hover:underline" target="_blank" rel="noopener noreferrer">View Certificate</a>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-indigo-600 mr-2">•</span>
+                    <div>
+                      <span className="font-medium">Certificate of Participation - Nukkad Natak</span>
+                      <br />
+                      <a href="https://online.publuu.com/525833/1178486" className="text-indigo-600 text-sm hover:underline" target="_blank" rel="noopener noreferrer">View Certificate</a>
+                    </div>
+                  </li>
                 </ul>
               </motion.div>
 
@@ -563,7 +661,7 @@ const Index = () => {
             </a>
           </div>
           <div className="text-center text-gray-300">
-            <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Sidharth. All rights reserved.</p>
           </div>
         </div>
       </footer>
