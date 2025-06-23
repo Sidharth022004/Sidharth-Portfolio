@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Home, User, Folder, Mail, FileText, 
@@ -15,6 +15,15 @@ interface HeaderProps {
 
 const Header = ({ isDarkMode, toggleDarkMode, activeSection, scrollToSection }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navigationItems = [
     { id: 'home', label: 'Home', icon: Home },
@@ -31,17 +40,29 @@ const Header = ({ isDarkMode, toggleDarkMode, activeSection, scrollToSection }: 
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 shadow-sm">
+    <motion.header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200 dark:border-gray-700' 
+          : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm'
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <div className="flex justify-between items-center h-16">
-          <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <motion.div 
+            className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+            whileHover={{ scale: 1.05 }}
+          >
             Sidharth.dev
-          </div>
+          </motion.div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navigationItems.map(({ id, label, icon: Icon }) => (
-              <button
+              <motion.button
                 key={id}
                 onClick={() => handleScrollToSection(id)}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
@@ -49,31 +70,49 @@ const Header = ({ isDarkMode, toggleDarkMode, activeSection, scrollToSection }: 
                     ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shadow-sm' 
                     : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300'
                 }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 aria-current={activeSection === id ? 'page' : undefined}
               >
                 <Icon size={18} />
                 <span className="font-medium">{label}</span>
-              </button>
+              </motion.button>
             ))}
           </div>
 
           <div className="flex items-center space-x-3">
-            <button
+            <motion.button
               onClick={toggleDarkMode}
               className="p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
             >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
+              <motion.div
+                initial={false}
+                animate={{ rotate: isDarkMode ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              </motion.div>
+            </motion.button>
             
-            <button
+            <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               aria-label="Toggle mobile menu"
               aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? <CloseIcon size={20} /> : <Menu size={20} />}
-            </button>
+              <motion.div
+                initial={false}
+                animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {isMobileMenuOpen ? <CloseIcon size={20} /> : <Menu size={20} />}
+              </motion.div>
+            </motion.button>
           </div>
         </div>
 
@@ -84,25 +123,30 @@ const Header = ({ isDarkMode, toggleDarkMode, activeSection, scrollToSection }: 
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
               className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900"
             >
               <div className="px-4 py-4 space-y-2">
-                {navigationItems.map(({ id, label, icon: Icon }) => (
-                  <button
+                {navigationItems.map(({ id, label, icon: Icon }, index) => (
+                  <motion.button
                     key={id}
                     onClick={() => handleScrollToSection(id)}
                     className="flex items-center space-x-3 w-full px-3 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-left"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ x: 5 }}
                   >
                     <Icon size={18} />
                     <span className="font-medium">{label}</span>
-                  </button>
+                  </motion.button>
                 ))}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </nav>
-    </header>
+    </motion.header>
   );
 };
 
