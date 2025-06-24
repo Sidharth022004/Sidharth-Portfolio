@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -27,7 +26,7 @@ const About = () => {
           >
             <div className="relative z-10">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80"
+                src="/lovable-uploads/c45d782c-2e07-41b2-877f-69e24d79b8f8.png"
                 alt="Sidharth - Software Developer"
                 className="w-full max-w-md mx-auto rounded-2xl shadow-2xl"
               />
