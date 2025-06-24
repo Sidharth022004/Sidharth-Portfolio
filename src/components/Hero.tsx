@@ -93,7 +93,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
               className="font-semibold text-yellow-300"
               whileHover={{ textShadow: "0 0 8px rgba(255, 235, 59, 0.8)" }}
             >
-              Software Developer
+              Software Engineer
             </motion.span>{' '}
             building innovative web experiences with modern technologies.
           </p>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -27,7 +28,7 @@ const About = () => {
             <div className="relative z-10">
               <img
                 src="/lovable-uploads/c45d782c-2e07-41b2-877f-69e24d79b8f8.png"
-                alt="Sidharth - Software Developer"
+                alt="Sidharth - Software Engineer"
                 className="w-full max-w-md mx-auto rounded-2xl shadow-2xl"
               />
             </div>
@@ -43,7 +44,7 @@ const About = () => {
           >
             <div className="space-y-4 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
               <p>
-                I'm a passionate software developer currently pursuing my <strong>Bachelor's in Computer Applications</strong> 
+                I'm a passionate software engineer currently pursuing my <strong>Bachelor's in Computer Applications</strong> 
                 from DPG Degree College, Haryana. With hands-on experience in web development and a keen interest in emerging technologies.
               </p>
               <p>
