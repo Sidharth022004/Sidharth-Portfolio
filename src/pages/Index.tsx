@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Header from '../components/Header';
@@ -11,6 +10,7 @@ import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import FloatingCTA from '../components/FloatingCTA';
+import BackToTop from '../components/BackToTop';
 
 const Index = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -96,6 +96,7 @@ const Index = () => {
       <Contact />
       <Footer />
       <FloatingCTA scrollToSection={scrollToSection} />
+      <BackToTop />
     </motion.div>
   );
 };
