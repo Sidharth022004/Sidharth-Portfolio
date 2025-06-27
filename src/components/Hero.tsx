@@ -29,8 +29,16 @@ const Hero = ({ scrollToSection }: HeroProps) => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-500">
+      {/* Rose Pattern Background */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/lovable-uploads/4a7b4553-2938-4dd1-aea7-73733ae61ded.png')`
+        }}
+      />
+      
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 via-purple-600/80 to-cyan-500/80">
         <motion.div
           className="absolute inset-0 opacity-30"
           animate={{
@@ -44,7 +52,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
         />
       </div>
       
-      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
       
       {/* Floating Elements */}
       <motion.div
