@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle, AlertCircle, Loader } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +13,11 @@ const Contact = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  // Email.js configuration - you'll need to replace these with your actual values
+  const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+  const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -50,13 +55,25 @@ const Contact = () => {
     setSubmitStatus('idle');
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Email.js send email
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_name: 'Sidharth', // Your name
+        },
+        EMAILJS_PUBLIC_KEY
+      );
       
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
       setErrors({});
     } catch (error) {
+      console.error('Email.js error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -102,6 +119,13 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg"
         >
+          {/* Configuration Notice */}
+          <div className="mb-6 p-4 bg-yellow-100 dark:bg-yellow-900/30 border border-yellow-300 dark:border-yellow-700 rounded-lg">
+            <p className="text-sm text-yellow-800 dark:text-yellow-200">
+              <strong>Email.js Setup Required:</strong> Please replace the placeholder values (SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY) with your actual Email.js configuration in the Contact component.
+            </p>
+          </div>
+
           {submitStatus === 'success' && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
