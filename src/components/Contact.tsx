@@ -14,10 +14,10 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  // Email.js configuration - you'll need to replace these with your actual values
-  const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-  const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+  // Email.js configuration
+  const EMAILJS_SERVICE_ID = 'service_iliay18';
+  const EMAILJS_TEMPLATE_ID = 'template_ic6l627';
+  const EMAILJS_PUBLIC_KEY = 'BJnjtDhtOX828_Q-_';
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
