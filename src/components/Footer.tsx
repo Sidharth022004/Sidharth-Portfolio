@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Mail, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -42,6 +42,13 @@ const Footer = () => {
               aria-label="Twitter"
             >
               <Twitter size={24} />
+            </a>
+            <a 
+              href="#" 
+              className="text-gray-400 hover:text-white transition-colors p-2 rounded-lg hover:bg-gray-800"
+              aria-label="Instagram"
+            >
+              <Instagram size={24} />
             </a>
           </div>
         </div>
