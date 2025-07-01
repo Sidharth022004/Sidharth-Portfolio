@@ -11,20 +11,36 @@ interface Message {
 }
 
 const AIChatbot = () => {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      text: "Hello! I'm your AI assistant. How can I help you today?",
-      isUser: false,
-      timestamp: new Date()
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [showSendButton, setShowSendButton] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Initialize chat with initial messages
+  const initializeChat = () => {
+    const initialMessages = [
+      { text: 'Hello! I am your AI assistant.', delay: 500 },
+      { text: 'How can I assist you with your portfolio today?', delay: 1000 }
+    ];
+
+    let cumulativeDelay = 0;
+    initialMessages.forEach((msg, index) => {
+      cumulativeDelay += msg.delay;
+      setTimeout(() => {
+        const newMessage: Message = {
+          id: `init-${index}`,
+          text: msg.text,
+          isUser: false,
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, newMessage]);
+      }, cumulativeDelay);
+    });
+  };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -32,7 +48,17 @@ const AIChatbot = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, isTyping]);
+
+  useEffect(() => {
+    if (isOpen && messages.length === 0) {
+      initializeChat();
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    setShowSendButton(inputValue.trim().length > 0);
+  }, [inputValue]);
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
@@ -46,30 +72,31 @@ const AIChatbot = () => {
 
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
+    setShowSendButton(false);
     setIsTyping(true);
 
-    // Simulate AI response
+    // Simulate AI response with more realistic responses
     setTimeout(() => {
+      const responses = [
+        "I've processed your request. Is there anything else I can assist with?",
+        "Based on your portfolio, I can help you with project details or contact information.",
+        "I can provide more information about the skills and technologies used.",
+        "Would you like to know more about any specific project or section?",
+        "I'm here to help you navigate through the portfolio. What interests you most?",
+        "Let me know if you'd like details about the experience or background.",
+        "I can assist with any questions about the portfolio content or layout."
+      ];
+      
+      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: generateAIResponse(inputValue),
+        text: randomResponse,
         isUser: false,
         timestamp: new Date()
       };
       setMessages(prev => [...prev, aiResponse]);
       setIsTyping(false);
-    }, 1000 + Math.random() * 2000);
-  };
-
-  const generateAIResponse = (userInput: string): string => {
-    const responses = [
-      "That's an interesting question! I'd be happy to help you with that.",
-      "I understand what you're asking. Let me provide you with some insights.",
-      "Thanks for reaching out! Here's what I think about your query.",
-      "Great question! Based on my knowledge, I can suggest the following.",
-      "I appreciate your question. Let me break this down for you.",
-    ];
-    return responses[Math.floor(Math.random() * responses.length)];
+    }, 1500 + Math.random() * 1000);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -82,7 +109,8 @@ const AIChatbot = () => {
   const adjustTextareaHeight = () => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+      const scrollHeight = textareaRef.current.scrollHeight;
+      textareaRef.current.style.height = `${Math.min(scrollHeight, 150)}px`;
     }
   };
 
@@ -90,11 +118,19 @@ const AIChatbot = () => {
     adjustTextareaHeight();
   }, [inputValue]);
 
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       {/* Floating Chat Button */}
       <motion.button
-        onClick={() => setIsOpen(true)}
+        onClick={handleOpen}
         className={`fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center ${
           isOpen ? 'hidden' : 'block'
         }`}
@@ -146,7 +182,7 @@ const AIChatbot = () => {
                   {isDarkMode ? <Sun size={16} /> : <Moon size={16} />}
                 </button>
                 <button
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleClose}
                   className={`p-2 rounded-lg transition-colors ${
                     isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-200'
                   }`}
@@ -184,6 +220,15 @@ const AIChatbot = () => {
                         ? 'bg-gray-800 text-white'
                         : 'bg-gray-100 text-gray-900'
                     }`}>
+                      <div className={`text-xs font-medium mb-1 ${
+                        message.isUser 
+                          ? 'text-blue-100' 
+                          : isDarkMode 
+                          ? 'text-gray-400' 
+                          : 'text-gray-500'
+                      }`}>
+                        {message.isUser ? 'YOU' : '🤖 AI'}
+                      </div>
                       <p className="text-sm">{message.text}</p>
                       <p className={`text-xs mt-1 ${
                         message.isUser 
@@ -217,6 +262,11 @@ const AIChatbot = () => {
                     <div className={`rounded-lg px-4 py-2 ${
                       isDarkMode ? 'bg-gray-800' : 'bg-gray-100'
                     }`}>
+                      <div className={`text-xs font-medium mb-1 ${
+                        isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                      }`}>
+                        🤖 AI
+                      </div>
                       <div className="flex space-x-1">
                         <div className={`w-2 h-2 rounded-full animate-bounce ${
                           isDarkMode ? 'bg-gray-400' : 'bg-gray-500'
@@ -253,18 +303,25 @@ const AIChatbot = () => {
                         ? 'bg-gray-700 text-white placeholder-gray-400' 
                         : 'bg-white text-gray-900 placeholder-gray-500 border border-gray-300'
                     }`}
-                    style={{ maxHeight: '100px', minHeight: '40px' }}
+                    style={{ maxHeight: '150px', minHeight: '40px' }}
                   />
                 </div>
-                <motion.button
-                  onClick={handleSendMessage}
-                  disabled={!inputValue.trim()}
-                  className="w-10 h-10 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Send size={16} />
-                </motion.button>
+                <AnimatePresence>
+                  {showSendButton && (
+                    <motion.button
+                      onClick={handleSendMessage}
+                      className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:from-blue-700 hover:to-purple-700 transition-all flex items-center justify-center shadow-lg"
+                      initial={{ opacity: 0, scale: 0.6 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.6 }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    >
+                      <Send size={16} />
+                    </motion.button>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           </motion.div>
