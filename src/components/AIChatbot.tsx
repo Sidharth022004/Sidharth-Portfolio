@@ -162,8 +162,12 @@ const AIChatbot = () => {
               isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'
             }`}>
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
-                  <Bot size={16} className="text-white" />
+                <div className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/lovable-uploads/814754c1-29ce-4604-8716-b890594dded3.png" 
+                    alt="AI Assistant" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <h3 className="font-semibold">AI Assistant</h3>
@@ -206,12 +210,20 @@ const AIChatbot = () => {
                   <div className={`flex max-w-xs lg:max-w-md ${
                     message.isUser ? 'flex-row-reverse' : 'flex-row'
                   }`}>
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center overflow-hidden ${
                       message.isUser 
                         ? 'bg-blue-600 text-white ml-2' 
                         : 'bg-gray-200 text-gray-600 mr-2'
                     }`}>
-                      {message.isUser ? <User size={16} /> : <Bot size={16} />}
+                      {message.isUser ? (
+                        <User size={16} />
+                      ) : (
+                        <img 
+                          src="/lovable-uploads/814754c1-29ce-4604-8716-b890594dded3.png" 
+                          alt="AI" 
+                          className="w-full h-full object-cover"
+                        />
+                      )}
                     </div>
                     <div className={`rounded-lg px-4 py-2 ${
                       message.isUser
@@ -254,10 +266,14 @@ const AIChatbot = () => {
                   className="flex justify-start"
                 >
                   <div className="flex">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-2 ${
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-2 overflow-hidden ${
                       isDarkMode ? 'bg-gray-200 text-gray-600' : 'bg-gray-200 text-gray-600'
                     }`}>
-                      <Bot size={16} />
+                      <img 
+                        src="/lovable-uploads/814754c1-29ce-4604-8716-b890594dded3.png" 
+                        alt="AI" 
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className={`rounded-lg px-4 py-2 ${
                       isDarkMode ? 'bg-gray-800' : 'bg-gray-100'
