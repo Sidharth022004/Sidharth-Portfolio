@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowDown, Sparkles, Code, Database, Palette } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -22,7 +21,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
       setCurrentTagline((prev) => (prev + 1) % taglines.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [taglines.length]);
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -30,7 +29,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/portfolio-uploads/4a7b4553-2938-4dd1-aea7-73733ae61ded.png')`
+          backgroundImage: `url('/lovable-uploads/4a7b4553-2938-4dd1-aea7-73733ae61ded.png')`
         }}
       />
       

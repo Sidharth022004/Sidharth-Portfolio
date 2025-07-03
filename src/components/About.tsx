@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Code, Users, Award, Download } from 'lucide-react';
@@ -54,7 +53,7 @@ const About = () => {
           >
             <div className="relative z-10">
               <img
-                src="/portfolio-uploads/c45d782c-2e07-41b2-877f-69e24d79b8f8.png"
+                src="/lovable-uploads/c45d782c-2e07-41b2-877f-69e24d79b8f8.png"
                 alt="Sidharth - Software Engineer"
                 className="w-full max-w-md mx-auto rounded-2xl shadow-2xl"
               />

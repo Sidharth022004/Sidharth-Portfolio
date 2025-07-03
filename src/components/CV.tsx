@@ -1,9 +1,64 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Download, User, Phone, Mail, MapPin, Calendar } from 'lucide-react';
 
 const CV = () => {
+  const handleDownload = () => {
+    // Create a simple text-based resume for download
+    const resumeContent = `
+SIDHARTH - SOFTWARE ENGINEER
+Email: sid240711@gmail.com
+Phone: 9870220973
+Location: Vill. Bharthal, Dwarka Sec-26, South West Delhi 110077
+
+OBJECTIVE
+I seek challenging opportunities where I can fully use my skills for the success of the organization.
+
+EDUCATION
+Bachelor of Computer Applications (BCA)
+DPG Degree College, affiliated by MDU Rohtak, Haryana
+Currently Pursuing
+
+12th Grade (CBSE) - 2022-2023 - Score: 85%
+10th Grade (Matric) (CBSE) - 2020-2021 - Score: 50%
+
+EXPERIENCE
+QA Testing Intern - Loqal.ai (June 2025 – Present)
+- Performing manual testing of web and mobile applications
+- Preparing detailed bug reports and collaborating with development team
+- Participating in test plan creation and quality assurance improvements
+
+Internshala Student Partner - Internshala (August 2024 - Dec 2024)
+- Represented Internshala in college, guiding students to find suitable courses and internships
+
+Frontend Tester Intern - SingleInterface (June 2024 – August 2024)
+- Completed 1.5-month internship in web development as frontend tester
+- Gained valuable experience working with supportive team and mentors
+
+SKILLS
+Technical Skills:
+- Microsoft Office Collaboration
+- Computer Skills
+- Web Development Testing
+- Quality Assurance
+
+Personal Skills & Languages:
+- Attention to Detail
+- Hindi (Fluent)
+- English (Proficient)
+    `;
+
+    const blob = new Blob([resumeContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Sidharth_Resume.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <section id="cv" className="py-20 bg-white dark:bg-gray-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,16 +72,15 @@ const CV = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">My Resume</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
           
-          <motion.a
-            href="/Sidharth_Resume.pdf"
-            download="Sidharth_Resume.pdf"
+          <motion.button
+            onClick={handleDownload}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold shadow-lg hover:shadow-xl"
           >
             <Download size={20} />
             <span>Download Resume</span>
-          </motion.a>
+          </motion.button>
         </motion.div>
 
         <div className="grid lg:grid-cols-1 gap-8">
