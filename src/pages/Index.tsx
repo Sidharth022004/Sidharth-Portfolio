@@ -11,7 +11,7 @@ import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import FloatingCTA from '../components/FloatingCTA';
-
+import BackToTop from '../components/BackToTop';
 import AIChatbot from '../components/AIChatbot';
 
 const Index = () => {
@@ -98,7 +98,7 @@ const Index = () => {
       <Contact />
       <Footer />
       <FloatingCTA scrollToSection={scrollToSection} />
-      
+      <BackToTop />
       <AIChatbot />
     </motion.div>
   );
