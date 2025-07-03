@@ -30,7 +30,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/lovable-uploads/4a7b4553-2938-4dd1-aea7-73733ae61ded.png')`
+          backgroundImage: `url('/portfolio-uploads/4a7b4553-2938-4dd1-aea7-73733ae61ded.png')`
         }}
       />
       

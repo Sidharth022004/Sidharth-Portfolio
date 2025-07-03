@@ -164,7 +164,7 @@ const AIChatbot = () => {
               <div className="flex items-center space-x-3">
                 <div className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden">
                   <img 
-                    src="/lovable-uploads/814754c1-29ce-4604-8716-b890594dded3.png" 
+                    src="/portfolio-uploads/814754c1-29ce-4604-8716-b890594dded3.png" 
                     alt="AI Assistant" 
                     className="w-full h-full object-cover"
                   />
@@ -219,7 +219,7 @@ const AIChatbot = () => {
                         <User size={16} />
                       ) : (
                         <img 
-                          src="/lovable-uploads/814754c1-29ce-4604-8716-b890594dded3.png" 
+                          src="/portfolio-uploads/814754c1-29ce-4604-8716-b890594dded3.png" 
                           alt="AI" 
                           className="w-full h-full object-cover"
                         />
@@ -270,7 +270,7 @@ const AIChatbot = () => {
                       isDarkMode ? 'bg-gray-200 text-gray-600' : 'bg-gray-200 text-gray-600'
                     }`}>
                       <img 
-                        src="/lovable-uploads/814754c1-29ce-4604-8716-b890594dded3.png" 
+                        src="/portfolio-uploads/814754c1-29ce-4604-8716-b890594dded3.png" 
                         alt="AI" 
                         className="w-full h-full object-cover"
                       />
