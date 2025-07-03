@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Mail, Github, Linkedin, Twitter, Instagram, Heart, ArrowUp } from 'lucide-react';
+import { Mail, Github, Linkedin, Twitter, Instagram, Heart, ArrowUp, Phone, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
@@ -45,9 +45,32 @@ const Footer = () => {
               <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
                 Sidharth.dev
               </div>
-              <p className="text-gray-300 text-lg leading-relaxed max-w-md">
+              <p className="text-gray-300 text-lg leading-relaxed max-w-md mb-6">
                 Building the future, one line of code at a time. Passionate about creating innovative web solutions that make a difference.
               </p>
+              
+              {/* Contact Information */}
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <Phone size={18} className="text-blue-400" />
+                  <a href="tel:9870220973" className="hover:text-white transition-colors">
+                    9870220973
+                  </a>
+                </div>
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <Mail size={18} className="text-blue-400" />
+                  <a href="mailto:sid240711@gmail.com" className="hover:text-white transition-colors">
+                    sid240711@gmail.com
+                  </a>
+                </div>
+                <div className="flex items-start space-x-3 text-gray-300">
+                  <MapPin size={18} className="text-blue-400 mt-0.5" />
+                  <span className="text-sm">
+                    Vill. Bharthal, Dwarka Sec-26,<br />
+                    South West Delhi 110077
+                  </span>
+                </div>
+              </div>
             </motion.div>
             
             <motion.div

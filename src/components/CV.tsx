@@ -29,35 +29,7 @@ const CV = () => {
           </motion.a>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl"
-          >
-            <h3 className="text-2xl font-bold mb-4 flex items-center">
-              <User className="mr-2" size={24} />
-              Contact Information
-            </h3>
-            <div className="space-y-3">
-              <div className="flex items-center">
-                <Phone className="mr-3 text-blue-600" size={18} />
-                <span>9870220973</span>
-              </div>
-              <div className="flex items-center">
-                <Mail className="mr-3 text-blue-600" size={18} />
-                <span>sid240711@gmail.com</span>
-              </div>
-              <div className="flex items-center">
-                <MapPin className="mr-3 text-blue-600" size={18} />
-                <span>Vill. Bharthal, Dwarka Sec-26, South West Delhi 110077</span>
-              </div>
-            </div>
-          </motion.div>
-
+        <div className="grid lg:grid-cols-1 gap-8">
           {/* Objective */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
