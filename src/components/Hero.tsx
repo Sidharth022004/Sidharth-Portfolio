@@ -8,7 +8,7 @@ interface HeroProps {
 
 const Hero = ({ scrollToSection }: HeroProps) => {
   const taglines = [
-    "Full-Stack Developer",
+    "Software Engineer with AI Integration",
     "Problem Solver", 
     "Tech Enthusiast",
     "Innovation Creator"
