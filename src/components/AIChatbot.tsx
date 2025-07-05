@@ -22,7 +22,7 @@ const AIChatbot = () => {
   // Initialize chat with initial messages
   const initializeChat = () => {
     const initialMessages = [
-      { text: 'Hello! I am your AI assistant.', delay: 500 },
+      { text: 'Hello! I am your  assistant.', delay: 500 },
       { text: 'How can I assist you with your portfolio today?', delay: 1000 }
     ];
 
