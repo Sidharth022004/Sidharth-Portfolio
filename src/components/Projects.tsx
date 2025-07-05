@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, X, Calendar, Tag } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   const projects = [
     {
@@ -69,10 +71,10 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('projects.title')}</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Here are some of my recent projects that showcase my skills in modern web development.
+            {t('projects.subtitle')}
           </p>
         </motion.div>
         
@@ -145,7 +147,7 @@ const Projects = () => {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <ExternalLink size={16} />
-                    <span>Live Demo</span>
+                    <span>{t('projects.liveDemo')}</span>
                   </motion.a>
                   <motion.a
                     href={project.githubUrl}
@@ -154,7 +156,7 @@ const Projects = () => {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <Github size={16} />
-                    <span>Code</span>
+                    <span>{t('projects.code')}</span>
                   </motion.a>
                 </div>
               </div>
@@ -216,7 +218,7 @@ const Projects = () => {
                   </p>
                   
                   <div className="mb-6">
-                    <h4 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">Technologies Used</h4>
+                    <h4 className="text-lg font-semibold mb-3 text-gray-900 dark:text-white">{t('projects.techUsed')}</h4>
                     <div className="flex flex-wrap gap-2">
                       {projects[selectedProject].tech.map((tech, techIndex) => (
                         <span
@@ -237,7 +239,7 @@ const Projects = () => {
                       whileTap={{ scale: 0.95 }}
                     >
                       <ExternalLink size={18} />
-                      <span>View Live Demo</span>
+                      <span>{t('projects.viewLiveDemo')}</span>
                     </motion.a>
                     <motion.a
                       href={projects[selectedProject].githubUrl}
@@ -246,7 +248,7 @@ const Projects = () => {
                       whileTap={{ scale: 0.95 }}
                     >
                       <Github size={18} />
-                      <span>View Source Code</span>
+                      <span>{t('projects.viewSourceCode')}</span>
                     </motion.a>
                   </div>
                 </div>

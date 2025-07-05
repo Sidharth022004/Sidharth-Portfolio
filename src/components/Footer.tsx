@@ -1,13 +1,16 @@
 import React from 'react';
 import { Mail, Github, Linkedin, Twitter, Instagram, Heart, Phone, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   const quickLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'CV', href: '#cv' },
-    { name: 'Contact', href: '#contact' }
+    { name: t('nav.about'), href: '#about' },
+    { name: t('nav.projects'), href: '#projects' },
+    { name: t('nav.cv'), href: '#cv' },
+    { name: t('nav.contact'), href: '#contact' }
   ];
 
   const socialLinks = [
@@ -38,10 +41,10 @@ const Footer = () => {
               className="mb-6"
             >
               <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
-                Sidharth.dev
+                {t('footer.brand')}
               </div>
               <p className="text-gray-300 text-lg leading-relaxed max-w-md mb-6">
-                Building the future, one line of code at a time. Passionate about creating innovative web solutions that make a difference.
+                {t('footer.description')}
               </p>
               
               {/* Contact Information */}
@@ -75,9 +78,9 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex items-center space-x-2 text-gray-400"
             >
-              <span>Made with</span>
+              <span>{t('footer.madeWith')}</span>
               <Heart size={16} className="text-red-400 animate-pulse" />
-              <span>using React & Tailwind CSS</span>
+              <span>{t('footer.using')}</span>
             </motion.div>
           </div>
 
@@ -88,7 +91,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h3 className="text-xl font-semibold mb-4 text-white">Quick Links</h3>
+            <h3 className="text-xl font-semibold mb-4 text-white">{t('footer.quickLinks')}</h3>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
@@ -114,7 +117,7 @@ const Footer = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="text-xl font-semibold mb-4 text-white">Connect</h3>
+            <h3 className="text-xl font-semibold mb-4 text-white">{t('footer.connect')}</h3>
             <div className="flex flex-wrap gap-3">
               {socialLinks.map((social, index) => (
                 <a
@@ -140,11 +143,11 @@ const Footer = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400">
-              &copy; {new Date().getFullYear()} Sidharth. All rights reserved.
+              &copy; {new Date().getFullYear()} Sidharth. {t('footer.rights')}
             </p>
             <div className="flex items-center space-x-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-white transition-colors">{t('footer.privacy')}</a>
+              <a href="#" className="hover:text-white transition-colors">{t('footer.terms')}</a>
             </div>
           </div>
         </motion.div>

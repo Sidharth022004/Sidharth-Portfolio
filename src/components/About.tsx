@@ -1,28 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Code, Users, Award, Download } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const About = () => {
+  const { t } = useLanguage();
+  
   const highlights = [
     {
       icon: <GraduationCap size={24} />,
-      title: "Education",
-      description: "Bachelor's in Computer Applications"
+      title: t('about.highlights.education'),
+      description: t('about.highlights.education.desc')
     },
     {
       icon: <Code size={24} />,
-      title: "Experience",
-      description: "Web Development & IoT"
+      title: t('about.highlights.experience'),
+      description: t('about.highlights.experience.desc')
     },
     {
       icon: <Users size={24} />,
-      title: "Leadership",
-      description: "Internshala Student Partner"
+      title: t('about.highlights.leadership'),
+      description: t('about.highlights.leadership.desc')
     },
     {
       icon: <Award size={24} />,
-      title: "Expertise",
-      description: "Full-Stack Development"
+      title: t('about.highlights.expertise'),
+      description: t('about.highlights.expertise.desc')
     }
   ];
 
@@ -36,10 +39,10 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">About Me</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('about.title')}</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Passionate about creating innovative solutions through technology
+            {t('about.subtitle')}
           </p>
         </motion.div>
 
@@ -81,19 +84,9 @@ const About = () => {
             className="space-y-6"
           >
             <div className="space-y-4 text-lg leading-relaxed text-gray-600 dark:text-gray-300">
-              <p>
-                I'm a passionate software engineer currently pursuing my <strong>Bachelor's in Computer Applications</strong> 
-                from DPG Degree College, Haryana. With hands-on experience in web development and a keen interest in emerging technologies.
-              </p>
-              <p>
-                My expertise spans across <strong>Web Development, IoT, and Artificial Intelligence</strong>. 
-                I've completed internships at SingleInterface and currently serve as an Internshala Student Partner, 
-                helping fellow students navigate their career paths.
-              </p>
-              <p>
-                When I'm not coding, you'll find me exploring new technologies, participating in tech communities, 
-                or working on personal projects that solve real-world problems.
-              </p>
+              <p>{t('about.description1')}</p>
+              <p>{t('about.description2')}</p>
+              <p>{t('about.description3')}</p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
@@ -104,7 +97,7 @@ const About = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Download size={20} />
-                <span>Download Resume</span>
+                <span>{t('about.downloadResume')}</span>
               </motion.button>
               <motion.button
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
@@ -112,7 +105,7 @@ const About = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                View Projects
+                {t('about.viewProjects')}
               </motion.button>
             </div>
           </motion.div>
@@ -155,11 +148,11 @@ const About = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">2+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Years Learning</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">{t('hero.stats.years')}</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">5+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Projects Completed</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">{t('hero.stats.projects')}</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">10+</div>
@@ -167,7 +160,7 @@ const About = () => {
             </div>
             <div>
               <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">100%</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Dedication</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">{t('hero.stats.dedicated')}</div>
             </div>
           </div>
         </motion.div>

@@ -1,10 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Home, User, Folder, Mail, FileText, 
   HelpCircle, Sun, Moon, Menu, X as CloseIcon
 } from 'lucide-react';
+import LanguageSwitch from './LanguageSwitch';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface HeaderProps {
   isDarkMode: boolean;
@@ -16,6 +17,7 @@ interface HeaderProps {
 const Header = ({ isDarkMode, toggleDarkMode, activeSection, scrollToSection }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,12 +28,12 @@ const Header = ({ isDarkMode, toggleDarkMode, activeSection, scrollToSection }: 
   }, []);
 
   const navigationItems = [
-    { id: 'home', label: 'Home', icon: Home },
-    { id: 'about', label: 'About', icon: User },
-    { id: 'projects', label: 'Projects', icon: Folder },
-    { id: 'cv', label: 'CV', icon: FileText },
-    { id: 'faq', label: 'FAQ', icon: HelpCircle },
-    { id: 'contact', label: 'Contact', icon: Mail },
+    { id: 'home', label: t('nav.home'), icon: Home },
+    { id: 'about', label: t('nav.about'), icon: User },
+    { id: 'projects', label: t('nav.projects'), icon: Folder },
+    { id: 'cv', label: t('nav.cv'), icon: FileText },
+    { id: 'faq', label: t('nav.faq'), icon: HelpCircle },
+    { id: 'contact', label: t('nav.contact'), icon: Mail },
   ];
 
   const handleScrollToSection = (sectionId: string) => {
@@ -81,6 +83,10 @@ const Header = ({ isDarkMode, toggleDarkMode, activeSection, scrollToSection }: 
           </div>
 
           <div className="flex items-center space-x-3">
+            {/* Language Switch */}
+            <LanguageSwitch />
+            
+            {/* Dark Mode Toggle */}
             <motion.button
               onClick={toggleDarkMode}
               className="p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -97,6 +103,7 @@ const Header = ({ isDarkMode, toggleDarkMode, activeSection, scrollToSection }: 
               </motion.div>
             </motion.button>
             
+            {/* Mobile Menu Toggle */}
             <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"

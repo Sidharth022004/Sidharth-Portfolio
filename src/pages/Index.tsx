@@ -1,6 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { LanguageProvider } from '../contexts/LanguageContext';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import About from '../components/About';
@@ -77,30 +77,32 @@ const Index = () => {
   };
 
   return (
-    <motion.div 
-      className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Header 
-        isDarkMode={isDarkMode}
-        toggleDarkMode={toggleDarkMode}
-        activeSection={activeSection}
-        scrollToSection={scrollToSection}
-      />
-      <Hero scrollToSection={scrollToSection} />
-      <About />
-      <Projects />
-      <CV />
-      <Testimonials />
-      <FAQ />
-      <Contact />
-      <Footer />
-      <FloatingCTA scrollToSection={scrollToSection} />
-      <BackToTop />
-      <AIChatbot />
-    </motion.div>
+    <LanguageProvider>
+      <motion.div 
+        className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Header 
+          isDarkMode={isDarkMode}
+          toggleDarkMode={toggleDarkMode}
+          activeSection={activeSection}
+          scrollToSection={scrollToSection}
+        />
+        <Hero scrollToSection={scrollToSection} />
+        <About />
+        <Projects />
+        <CV />
+        <Testimonials />
+        <FAQ />
+        <Contact />
+        <Footer />
+        <FloatingCTA scrollToSection={scrollToSection} />
+        <BackToTop />
+        <AIChatbot />
+      </motion.div>
+    </LanguageProvider>
   );
 };
 

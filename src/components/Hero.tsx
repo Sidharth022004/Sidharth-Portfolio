@@ -1,17 +1,20 @@
 import React from 'react';
 import { ArrowDown, Sparkles, Code, Database, Palette } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface HeroProps {
   scrollToSection: (sectionId: string) => void;
 }
 
 const Hero = ({ scrollToSection }: HeroProps) => {
+  const { t } = useLanguage();
+  
   const taglines = [
-    "Software Engineer with AI Integration",
-    "Problem Solver", 
-    "Tech Enthusiast",
-    "Innovation Creator"
+    t('hero.tagline1'),
+    t('hero.tagline2'), 
+    t('hero.tagline3'),
+    t('hero.tagline4')
   ];
 
   const [currentTagline, setCurrentTagline] = React.useState(0);
@@ -75,9 +78,9 @@ const Hero = ({ scrollToSection }: HeroProps) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Hi, I'm{' '}
+          {t('hero.greeting')}{' '}
           <span className="text-yellow-300 bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
-            Sidharth
+            {t('hero.name')}
           </span>
         </motion.h1>
 
@@ -106,7 +109,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          Building innovative web experiences with modern technologies and creative solutions.
+          {t('hero.description')}
         </motion.p>
 
         {/* Enhanced Stats Row */}
@@ -118,15 +121,15 @@ const Hero = ({ scrollToSection }: HeroProps) => {
         >
           <div className="text-center">
             <div className="text-3xl font-bold text-yellow-300">2+</div>
-            <div className="text-sm text-gray-200">Years Learning</div>
+            <div className="text-sm text-gray-200">{t('hero.stats.years')}</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-yellow-300">5+</div>
-            <div className="text-sm text-gray-200">Projects</div>
+            <div className="text-sm text-gray-200">{t('hero.stats.projects')}</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-yellow-300">100%</div>
-            <div className="text-sm text-gray-200">Dedicated</div>
+            <div className="text-sm text-gray-200">{t('hero.stats.dedicated')}</div>
           </div>
         </motion.div>
         
@@ -141,7 +144,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
             className="group bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 hover:-translate-y-0.5"
           >
             <span className="flex items-center space-x-2">
-              <span>View My Work</span>
+              <span>{t('hero.viewWork')}</span>
               <span className="group-hover:translate-x-1 transition-transform duration-200">
                 →
               </span>
@@ -152,7 +155,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
             onClick={() => scrollToSection('contact')}
             className="group border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-white hover:text-blue-600 hover:scale-105 hover:-translate-y-0.5"
           >
-            Get In Touch
+            {t('hero.getInTouch')}
           </button>
         </motion.div>
 
@@ -163,7 +166,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.8 }}
         >
-          <p className="text-sm text-gray-200 mb-4">Scroll to explore</p>
+          <p className="text-sm text-gray-200 mb-4">{t('hero.scrollExplore')}</p>
           <motion.button
             onClick={() => scrollToSection('about')}
             className="text-white hover:text-yellow-300 transition-colors hover:scale-110"
