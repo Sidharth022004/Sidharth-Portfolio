@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Mail, Phone, MapPin } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +10,8 @@ const Contact = () => {
     message: ''
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -45,15 +45,87 @@ const Contact = () => {
     
     if (!validateForm()) return;
     
-    // Simple form submission - just show success message
-    setSubmitStatus('success');
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setErrors({});
+    setIsSubmitting(true);
+    setSubmitStatus('sending');
     
-    // Reset success message after 5 seconds
-    setTimeout(() => {
-      setSubmitStatus('idle');
-    }, 5000);
+    try {
+      // Using EmailJS for email functionality
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: 'service_portfolio', // You'll need to set this up
+          template_id: 'template_contact', // You'll need to set this up
+          user_id: 'your_emailjs_user_id', // You'll need to set this up
+          template_params: {
+            from_name: formData.name,
+            from_email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            to_email: 'sid240711@gmail.com'
+          }
+        })
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setErrors({});
+        
+        // Auto-reply functionality
+        await sendAutoReply();
+        
+      } else {
+        throw new Error('Failed to send email');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+      
+      // Reset status after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 5000);
+    }
+  };
+
+  const sendAutoReply = async () => {
+    try {
+      await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: 'service_portfolio',
+          template_id: 'template_auto_reply',
+          user_id: 'your_emailjs_user_id',
+          template_params: {
+            to_name: formData.name,
+            to_email: formData.email,
+            subject: 'Thank you for contacting me!',
+            message: `Hi ${formData.name},
+
+Thank you for reaching out! I've received your message about "${formData.subject}" and I appreciate you taking the time to contact me.
+
+I'll review your message and get back to you within 24-48 hours. In the meantime, feel free to check out my projects and experience on my portfolio.
+
+Best regards,
+Sidharth
+Software Engineer with AI Integration
+
+---
+This is an automated response. Please do not reply to this email.`
+          }
+        })
+      });
+    } catch (error) {
+      console.error('Error sending auto-reply:', error);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -73,7 +145,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -87,174 +159,280 @@ const Contact = () => {
             I'm always interested in new opportunities and exciting projects. Let's build something amazing together!
           </p>
         </motion.div>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg"
-        >
-          {submitStatus === 'success' && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-6 p-4 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-lg flex items-center space-x-2 text-green-700 dark:text-green-300"
-            >
-              <CheckCircle size={20} />
-              <span>Thank you! Your message has been received.</span>
-            </motion.div>
-          )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <motion.div variants={inputVariants} whileFocus="focus">
-                <label htmlFor="name" className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 transition-all duration-200 ${
-                    errors.name 
-                      ? 'border-red-500 dark:border-red-500' 
-                      : 'border-gray-300 dark:border-gray-600'
-                  }`}
-                  placeholder="Your Full Name"
-                  aria-invalid={!!errors.name}
-                  aria-describedby={errors.name ? "name-error" : undefined}
-                />
-                {errors.name && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    id="name-error"
-                    className="mt-1 text-sm text-red-600 dark:text-red-400"
-                  >
-                    {errors.name}
-                  </motion.p>
-                )}
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
+          >
+            <div>
+              <h3 className="text-2xl font-bold mb-6">Let's Connect</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                Whether you have a project in mind, want to collaborate, or just want to say hello, 
+                I'd love to hear from you. I typically respond within 24 hours.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              <motion.div 
+                className="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                  <Mail className="text-white" size={20} />
+                </div>
+                <div>
+                  <h4 className="font-semibold">Email</h4>
+                  <a href="mailto:sid240711@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    sid240711@gmail.com
+                  </a>
+                </div>
               </motion.div>
 
-              <motion.div variants={inputVariants} whileFocus="focus">
-                <label htmlFor="email" className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 transition-all duration-200 ${
-                    errors.email 
-                      ? 'border-red-500 dark:border-red-500' 
-                      : 'border-gray-300 dark:border-gray-600'
-                  }`}
-                  placeholder="your.email@example.com"
-                  aria-invalid={!!errors.email}
-                  aria-describedby={errors.email ? "email-error" : undefined}
-                />
-                {errors.email && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    id="email-error"
-                    className="mt-1 text-sm text-red-600 dark:text-red-400"
-                  >
-                    {errors.email}
-                  </motion.p>
-                )}
+              <motion.div 
+                className="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
+                  <Phone className="text-white" size={20} />
+                </div>
+                <div>
+                  <h4 className="font-semibold">Phone</h4>
+                  <a href="tel:9870220973" className="text-green-600 dark:text-green-400 hover:underline">
+                    +91 9870220973
+                  </a>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                className="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
+                  <MapPin className="text-white" size={20} />
+                </div>
+                <div>
+                  <h4 className="font-semibold">Location</h4>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Delhi, India
+                  </p>
+                </div>
               </motion.div>
             </div>
 
-            <motion.div variants={inputVariants} whileFocus="focus">
-              <label htmlFor="subject" className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
-                Subject *
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 transition-all duration-200 ${
-                  errors.subject 
-                    ? 'border-red-500 dark:border-red-500' 
-                    : 'border-gray-300 dark:border-gray-600'
-                }`}
-                placeholder="Project Inquiry"
-                aria-invalid={!!errors.subject}
-                aria-describedby={errors.subject ? "subject-error" : undefined}
-              />
-              {errors.subject && (
-                <motion.p
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  id="subject-error"
-                  className="mt-1 text-sm text-red-600 dark:text-red-400"
-                >
-                  {errors.subject}
-                </motion.p>
-              )}
-            </motion.div>
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 p-6 rounded-lg">
+              <h4 className="font-semibold mb-2">Response Time</h4>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                I typically respond to all inquiries within 24-48 hours. For urgent matters, 
+                feel free to call me directly.
+              </p>
+            </div>
+          </motion.div>
 
-            <motion.div variants={inputVariants} whileFocus="focus">
-              <label htmlFor="message" className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
-                Message *
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={6}
-                value={formData.message}
-                onChange={handleChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 transition-all duration-200 resize-none ${
-                  errors.message 
-                    ? 'border-red-500 dark:border-red-500' 
-                    : 'border-gray-300 dark:border-gray-600'
-                }`}
-                placeholder="Tell me about your project or how we can work together..."
-                aria-invalid={!!errors.message}
-                aria-describedby={errors.message ? "message-error" : undefined}
-              />
-              <div className="flex justify-between items-center mt-1">
-                {errors.message ? (
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg"
+          >
+            {submitStatus === 'success' && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-4 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-lg flex items-center space-x-2 text-green-700 dark:text-green-300"
+              >
+                <CheckCircle size={20} />
+                <span>Thank you! Your message has been sent successfully. I'll get back to you soon!</span>
+              </motion.div>
+            )}
+
+            {submitStatus === 'error' && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-4 bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-700 rounded-lg flex items-center space-x-2 text-red-700 dark:text-red-300"
+              >
+                <AlertCircle size={20} />
+                <span>Sorry, there was an error sending your message. Please try again or email me directly.</span>
+              </motion.div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <motion.div variants={inputVariants} whileFocus="focus">
+                  <label htmlFor="name" className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${
+                      errors.name 
+                        ? 'border-red-500 dark:border-red-500' 
+                        : 'border-gray-300 dark:border-gray-600'
+                    }`}
+                    placeholder="Your Full Name"
+                    aria-invalid={!!errors.name}
+                    aria-describedby={errors.name ? "name-error" : undefined}
+                  />
+                  {errors.name && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      id="name-error"
+                      className="mt-1 text-sm text-red-600 dark:text-red-400"
+                    >
+                      {errors.name}
+                    </motion.p>
+                  )}
+                </motion.div>
+
+                <motion.div variants={inputVariants} whileFocus="focus">
+                  <label htmlFor="email" className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${
+                      errors.email 
+                        ? 'border-red-500 dark:border-red-500' 
+                        : 'border-gray-300 dark:border-gray-600'
+                    }`}
+                    placeholder="your.email@example.com"
+                    aria-invalid={!!errors.email}
+                    aria-describedby={errors.email ? "email-error" : undefined}
+                  />
+                  {errors.email && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      id="email-error"
+                      className="mt-1 text-sm text-red-600 dark:text-red-400"
+                    >
+                      {errors.email}
+                    </motion.p>
+                  )}
+                </motion.div>
+              </div>
+
+              <motion.div variants={inputVariants} whileFocus="focus">
+                <label htmlFor="subject" className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                  Subject *
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${
+                    errors.subject 
+                      ? 'border-red-500 dark:border-red-500' 
+                      : 'border-gray-300 dark:border-gray-600'
+                  }`}
+                  placeholder="Project Inquiry / Collaboration / General Question"
+                  aria-invalid={!!errors.subject}
+                  aria-describedby={errors.subject ? "subject-error" : undefined}
+                />
+                {errors.subject && (
                   <motion.p
                     initial={{ opacity: 0, y: -5 }}
                     animate={{ opacity: 1, y: 0 }}
-                    id="message-error"
-                    className="text-sm text-red-600 dark:text-red-400"
+                    id="subject-error"
+                    className="mt-1 text-sm text-red-600 dark:text-red-400"
                   >
-                    {errors.message}
+                    {errors.subject}
                   </motion.p>
-                ) : (
-                  <div />
                 )}
-                <span className={`text-sm ${
-                  formData.message.length >= 10 
-                    ? 'text-green-600 dark:text-green-400' 
-                    : 'text-gray-400'
-                }`}>
-                  {formData.message.length}/500
-                </span>
-              </div>
-            </motion.div>
+              </motion.div>
 
-            <motion.button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Send size={20} />
-              <span>Send Message</span>
-            </motion.button>
-          </form>
-        </motion.div>
+              <motion.div variants={inputVariants} whileFocus="focus">
+                <label htmlFor="message" className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                  Message *
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={6}
+                  value={formData.message}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 transition-all duration-200 resize-none disabled:opacity-50 disabled:cursor-not-allowed ${
+                    errors.message 
+                      ? 'border-red-500 dark:border-red-500' 
+                      : 'border-gray-300 dark:border-gray-600'
+                  }`}
+                  placeholder="Tell me about your project, collaboration idea, or any questions you have. I'd love to hear from you!"
+                  aria-invalid={!!errors.message}
+                  aria-describedby={errors.message ? "message-error" : undefined}
+                />
+                <div className="flex justify-between items-center mt-1">
+                  {errors.message ? (
+                    <motion.p
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      id="message-error"
+                      className="text-sm text-red-600 dark:text-red-400"
+                    >
+                      {errors.message}
+                    </motion.p>
+                  ) : (
+                    <div />
+                  )}
+                  <span className={`text-sm ${
+                    formData.message.length >= 10 
+                      ? 'text-green-600 dark:text-green-400' 
+                      : 'text-gray-400'
+                  }`}>
+                    {formData.message.length}/1000
+                  </span>
+                </div>
+              </motion.div>
+
+              <motion.button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send size={20} />
+                    <span>Send Message</span>
+                  </>
+                )}
+              </motion.button>
+            </form>
+
+            <div className="mt-6 text-center">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                By sending this message, you agree that I may contact you regarding your inquiry.
+              </p>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
