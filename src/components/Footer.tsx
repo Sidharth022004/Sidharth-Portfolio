@@ -1,13 +1,8 @@
-
 import React from 'react';
-import { Mail, Github, Linkedin, Twitter, Instagram, Heart, ArrowUp, Phone, MapPin } from 'lucide-react';
+import { Mail, Github, Linkedin, Twitter, Instagram, Heart, Phone, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const quickLinks = [
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
@@ -132,17 +127,6 @@ const Footer = () => {
                 </a>
               ))}
             </div>
-            
-            {/* Back to Top Button */}
-            <motion.button
-              onClick={scrollToTop}
-              className="mt-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-110 hover:shadow-lg"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="Back to top"
-            >
-              <ArrowUp size={20} />
-            </motion.button>
           </motion.div>
         </div>
         
