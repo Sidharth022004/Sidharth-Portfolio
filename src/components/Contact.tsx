@@ -56,9 +56,9 @@ const Contact = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          service_id: 'service_portfolio', // You'll need to set this up
-          template_id: 'template_contact', // You'll need to set this up
-          user_id: 'your_emailjs_user_id', // You'll need to set this up
+          service_id: 'service_zcs78oe',
+          template_id: 'template_contact',
+          user_id: 'ei0M6UgMq2pVvKGNg',
           template_params: {
             from_name: formData.name,
             from_email: formData.email,
@@ -101,9 +101,9 @@ const Contact = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          service_id: 'service_portfolio',
+          service_id: 'service_zcs78oe',
           template_id: 'template_auto_reply',
-          user_id: 'your_emailjs_user_id',
+          user_id: 'ei0M6UgMq2pVvKGNg',
           template_params: {
             to_name: formData.name,
             to_email: formData.email,

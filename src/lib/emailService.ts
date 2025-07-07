@@ -13,12 +13,12 @@ export interface EmailJSConfig {
   userId: string;
 }
 
-// EmailJS configuration - You'll need to set these up in your EmailJS account
+// EmailJS configuration
 export const emailConfig: EmailJSConfig = {
-  serviceId: 'service_portfolio', // Replace with your EmailJS service ID
-  templateId: 'template_contact', // Replace with your EmailJS template ID
-  autoReplyTemplateId: 'template_auto_reply', // Replace with your auto-reply template ID
-  userId: 'your_emailjs_user_id' // Replace with your EmailJS user ID
+  serviceId: 'service_zcs78oe',
+  templateId: 'template_contact',
+  autoReplyTemplateId: 'template_auto_reply',
+  userId: 'ei0M6UgMq2pVvKGNg'
 };
 
 export const sendEmail = async (data: EmailData): Promise<boolean> => {

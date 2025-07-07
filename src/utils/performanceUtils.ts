@@ -47,44 +47,8 @@ export const preloadImages = async (sources: string[]): Promise<void[]> => {
 
 export const getWebVitals = (): Promise<any> => {
   return new Promise((resolve) => {
-    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-      const vitals: any = {};
-      
-      getCLS((metric) => {
-        vitals.CLS = metric;
-        checkComplete();
-      });
-      
-      getFID((metric) => {
-        vitals.FID = metric;
-        checkComplete();
-      });
-      
-      getFCP((metric) => {
-        vitals.FCP = metric;
-        checkComplete();
-      });
-      
-      getLCP((metric) => {
-        vitals.LCP = metric;
-        checkComplete();
-      });
-      
-      getTTFB((metric) => {
-        vitals.TTFB = metric;
-        checkComplete();
-      });
-      
-      let metricsCollected = 0;
-      const totalMetrics = 5;
-      
-      function checkComplete() {
-        metricsCollected++;
-        if (metricsCollected === totalMetrics) {
-          resolve(vitals);
-        }
-      }
-    });
+    // Web vitals temporarily disabled - would require web-vitals package
+    resolve({});
   });
 };
 
