@@ -147,20 +147,20 @@ const About = () => {
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">2+</div>
+              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">1+</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">{t('hero.stats.years')}</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">5+</div>
+              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">3</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">{t('hero.stats.projects')}</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">10+</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Technologies</div>
+              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">3</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Internships</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">100%</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">{t('hero.stats.dedicated')}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Committed to Learning</div>
             </div>
           </div>
         </motion.div>

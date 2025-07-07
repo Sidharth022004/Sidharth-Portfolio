@@ -12,7 +12,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
   
   const taglines = [
     t('hero.tagline1'),
-    t('hero.tagline2'), 
+    t('hero.tagline2'),
     t('hero.tagline3'),
     t('hero.tagline4')
   ];

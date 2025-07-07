@@ -12,7 +12,7 @@ Phone: 9870220973
 Location: Vill. Bharthal, Dwarka Sec-26, South West Delhi 110077
 
 OBJECTIVE
-I seek challenging opportunities where I can fully use my skills for the success of the organization.
+As a BCA student passionate about technology, I am seeking opportunities to apply my learning in real-world projects while continuing to develop my skills in software development and quality assurance.
 
 EDUCATION
 Bachelor of Computer Applications (BCA)
@@ -23,7 +23,7 @@ Currently Pursuing
 10th Grade (Matric) (CBSE) - 2020-2021 - Score: 50%
 
 EXPERIENCE
-QA Testing Intern - Loqal.ai (June 2025 – Present)
+QA Testing Intern - Loqal.ai (June 2024 – August 2024)
 - Performing manual testing of web and mobile applications
 - Preparing detailed bug reports and collaborating with development team
 - Participating in test plan creation and quality assurance improvements
@@ -37,13 +37,16 @@ Frontend Tester Intern - SingleInterface (June 2024 – August 2024)
 
 SKILLS
 Technical Skills:
-- Microsoft Office Collaboration
-- Computer Skills
-- Web Development Testing
-- Quality Assurance
+- Manual Testing & QA
+- HTML, CSS, JavaScript (Learning)
+- React Basics (Learning)
+- Microsoft Office Suite
+- Bug Reporting & Documentation
 
 Personal Skills & Languages:
 - Attention to Detail
+- Quick Learner
+- Team Collaboration
 - Hindi (Fluent)
 - English (Proficient)
     `;
@@ -94,7 +97,7 @@ Personal Skills & Languages:
           >
             <h3 className="text-2xl font-bold mb-4">Objective</h3>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              I seek challenging opportunities where I can fully use my skills for the success of the organization.
+              As a BCA student passionate about technology, I am seeking opportunities to apply my learning in real-world projects while continuing to develop my skills in software development and quality assurance.
             </p>
           </motion.div>
         </div>
@@ -138,7 +141,7 @@ Personal Skills & Languages:
             <div className="border-l-4 border-red-600 pl-6">
               <h4 className="font-bold text-lg">QA Testing Intern</h4>
               <p className="text-red-600 dark:text-red-400 font-medium">Loqal.ai</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">June 2025 – Present</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">June 2024 – August 2024</p>
               <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1">
                 <li>Performing manual testing of web and mobile applications to identify bugs and ensure functionality, usability, and performance</li>
                 <li>Preparing detailed bug reports and collaborating with the development team to resolve issues efficiently</li>
@@ -178,16 +181,19 @@ Personal Skills & Languages:
             <div className="space-y-4">
               <h4 className="text-lg font-semibold text-blue-600 dark:text-blue-400">Technical Skills</h4>
               <ul className="space-y-2 text-gray-600 dark:text-gray-300">
-                <li>• Microsoft Office Collaboration</li>
-                <li>• Computer Skills</li>
-                <li>• Web Development Testing</li>
-                <li>• Quality Assurance</li>
+                <li>• Manual Testing & QA</li>
+                <li>• HTML, CSS, JavaScript (Learning)</li>
+                <li>• React Basics (Learning)</li>
+                <li>• Microsoft Office Suite</li>
+                <li>• Bug Reporting & Documentation</li>
               </ul>
             </div>
             <div className="space-y-4">
               <h4 className="text-lg font-semibold text-purple-600 dark:text-purple-400">Personal Skills & Languages</h4>
               <ul className="space-y-2 text-gray-600 dark:text-gray-300">
                 <li>• Attention to Detail</li>
+                <li>• Quick Learner</li>
+                <li>• Team Collaboration</li>
                 <li>• Hindi (Fluent)</li>
                 <li>• English (Proficient)</li>
               </ul>

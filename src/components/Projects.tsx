@@ -9,37 +9,37 @@ const Projects = () => {
 
   const projects = [
     {
-      title: "E-commerce Platform",
-      description: "A modern e-commerce solution built with React, TypeScript, and Node.js featuring real-time inventory management and secure payment processing.",
-      fullDescription: "This comprehensive e-commerce platform features advanced inventory management, real-time notifications, secure payment integration with Stripe, and a responsive admin dashboard. Built with performance and scalability in mind.",
-      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=600&q=80",
-      tech: ["React", "TypeScript", "Node.js", "MongoDB", "Stripe"],
-      liveUrl: "#",
-      githubUrl: "#",
+      title: "Learning Management System (Academic Project)",
+      description: "A simple learning management system built as part of my BCA coursework, focusing on basic CRUD operations and user authentication.",
+      fullDescription: "This academic project helped me understand fundamental web development concepts including user registration, course enrollment, and basic content management. Built using HTML, CSS, JavaScript, and PHP with MySQL database.",
+      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80",
+      tech: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
+      liveUrl: "https://github.com/sidharth-demo/lms-project",
+      githubUrl: "https://github.com/sidharth-demo/lms-project",
       year: "2024",
-      status: "Completed"
+      status: "Academic Project"
     },
     {
-      title: "Task Management Dashboard",
-      description: "Collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-      fullDescription: "A comprehensive project management tool with Kanban boards, real-time collaboration, time tracking, file sharing, and detailed analytics. Features include team management, deadline tracking, and integration with popular tools.",
+      title: "Personal Portfolio Website",
+      description: "My personal portfolio website built with React and modern web technologies, showcasing my learning journey and projects.",
+      fullDescription: "This portfolio represents my journey in learning modern web development. Built with React, TypeScript, and Tailwind CSS, it demonstrates my understanding of component-based architecture, responsive design, and modern development practices.",
+      image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=600&q=80",
+      tech: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
+      liveUrl: "https://sidha.netlify.app",
+      githubUrl: "https://github.com/sidharth-demo/portfolio",
+      year: "2024",
+      status: "Live"
+    },
+    {
+      title: "Simple Calculator App",
+      description: "A basic calculator application built while learning JavaScript fundamentals and DOM manipulation.",
+      fullDescription: "One of my first JavaScript projects that helped me understand event handling, DOM manipulation, and basic programming logic. Features include basic arithmetic operations and a clean, responsive interface.",
       image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&w=600&q=80",
-      tech: ["React", "Firebase", "Tailwind CSS", "Framer Motion", "Socket.io"],
-      liveUrl: "#",
-      githubUrl: "#",
+      tech: ["HTML", "CSS", "JavaScript"],
+      liveUrl: "https://sidharth-calculator.netlify.app",
+      githubUrl: "https://github.com/sidharth-demo/calculator",
       year: "2024",
-      status: "In Progress"
-    },
-    {
-      title: "Weather Analytics Dashboard",
-      description: "Interactive weather dashboard with data visualization, location-based forecasts, and historical weather analysis.",
-      fullDescription: "Advanced weather analytics platform featuring machine learning predictions, interactive maps, historical data analysis, and customizable alerts. Integrates multiple weather APIs for comprehensive coverage.",
-      image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=600&q=80",
-      tech: ["React", "Chart.js", "Weather API", "CSS Grid", "Python"],
-      liveUrl: "#",
-      githubUrl: "#",
-      year: "2023",
-      status: "Completed"
+      status: "Learning Project"
     }
   ];
 

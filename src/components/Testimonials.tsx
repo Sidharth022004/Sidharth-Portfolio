@@ -6,29 +6,29 @@ import { Star, Quote } from 'lucide-react';
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    role: "Product Manager",
-    company: "TechCorp",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b9e0d83a?auto=format&fit=crop&w=150&q=80",
-    content: "Sidharth delivered exceptional work on our web application. His attention to detail and technical expertise made the project a huge success.",
+    name: "Mentor at SingleInterface",
+    role: "Senior Developer",
+    company: "SingleInterface",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80",
+    content: "Sidharth showed great enthusiasm during his internship. His attention to detail in testing and willingness to learn made him a valuable team member.",
     rating: 5
   },
   {
     id: 2,
-    name: "Michael Chen",
-    role: "Startup Founder",
-    company: "InnovateHub",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80",
-    content: "Working with Sidharth was a game-changer for our startup. He brought our vision to life with clean, efficient code and great communication.",
+    name: "College Professor",
+    role: "Computer Science Faculty",
+    company: "DPG Degree College",
+    image: "https://images.unsplash.com/photo-1494790108755-2616b9e0d83a?auto=format&fit=crop&w=150&q=80",
+    content: "Sidharth is one of our most dedicated students. His practical approach to learning and consistent effort in projects sets him apart from his peers.",
     rating: 5
   },
   {
     id: 3,
-    name: "Emily Rodriguez",
-    role: "Marketing Director",
-    company: "CreativeStudio",
+    name: "Fellow Student",
+    role: "BCA Student",
+    company: "Study Group",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80",
-    content: "Incredible developer! Sidharth created a beautiful, responsive website that perfectly captured our brand. Highly recommend!",
+    content: "Sidharth has been incredibly helpful as an Internshala Student Partner. His guidance helped me find the right internship opportunity for my career goals.",
     rating: 5
   }
 ];

@@ -7,20 +7,20 @@ const FAQ = () => {
 
   const faqItems = [
     {
-      question: "What technologies do you specialize in?",
-      answer: "I specialize in modern web development with React, TypeScript, Node.js, and Python. I'm experienced with cloud technologies like AWS and have hands-on experience with IoT and AI implementations."
+      question: "What is your current level of experience?",
+      answer: "I'm currently a BCA student with hands-on experience in manual testing through internships at SingleInterface and Loqal.ai. I'm actively learning web development technologies including HTML, CSS, JavaScript, and React."
     },
     {
-      question: "How long does a typical project take?",
-      answer: "Project timelines vary based on complexity and requirements. A simple responsive website might take 2-3 weeks, while a complex web application could take 2-3 months. I provide detailed timelines during project consultation."
+      question: "What kind of opportunities are you looking for?",
+      answer: "I'm seeking entry-level positions, internships, or junior developer roles where I can apply my learning while continuing to grow. I'm particularly interested in QA testing roles and frontend development opportunities."
     },
     {
-      question: "Do you work with clients remotely?",
-      answer: "Yes, I work with clients both locally and remotely. I'm experienced in remote collaboration using modern tools like Slack, Zoom, and project management platforms for seamless communication."
+      question: "Are you available for freelance or part-time work?",
+      answer: "Yes, I'm open to part-time opportunities and small projects that align with my current skill level. This helps me gain practical experience while completing my studies."
     },
     {
-      question: "What's your development process?",
-      answer: "I follow an agile development process with regular check-ins, wireframing, iterative development, thorough testing, and deployment. I ensure transparent communication throughout the project lifecycle."
+      question: "How do you stay updated with technology trends?",
+      answer: "I actively follow tech blogs, participate in online coding communities, work on personal projects, and take online courses. My role as an Internshala Student Partner also keeps me connected with industry trends."
     }
   ];
 
