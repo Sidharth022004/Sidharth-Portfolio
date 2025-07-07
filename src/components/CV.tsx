@@ -31,7 +31,7 @@ QA Testing Intern - Loqal.ai (June 2024 – August 2024)
 Internshala Student Partner - Internshala (August 2024 - Dec 2024)
 - Represented Internshala in college, guiding students to find suitable courses and internships
 
-Frontend Tester Intern - SingleInterface (June 2024 – August 2024)
+Frontend + Testing Intern - SingleInterface (June 2024 – August 2024)
 - Completed 1.5-month internship in web development as frontend tester
 - Gained valuable experience working with supportive team and mentors
 
@@ -157,7 +157,7 @@ Personal Skills & Languages:
               </p>
             </div>
             <div className="border-l-4 border-blue-600 pl-6">
-              <h4 className="font-bold text-lg">Frontend Tester Intern</h4>
+              <h4 className="font-bold text-lg">Frontend + Testing Intern</h4>
               <p className="text-blue-600 dark:text-blue-400 font-medium">SingleInterface</p>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">June 2024 – August 2024</p>
               <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-1">
