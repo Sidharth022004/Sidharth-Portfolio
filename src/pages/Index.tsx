@@ -13,6 +13,7 @@ import Footer from '../components/Footer';
 import FloatingCTA from '../components/FloatingCTA';
 import BackToTop from '../components/BackToTop';
 import AIChatbot from '../components/AIChatbot';
+import PerformanceOptimizer from '../components/PerformanceOptimizer';
 
 const Index = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -78,6 +79,7 @@ const Index = () => {
 
   return (
     <LanguageProvider>
+      <PerformanceOptimizer />
       <motion.div 
         className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300"
         initial={{ opacity: 0 }}

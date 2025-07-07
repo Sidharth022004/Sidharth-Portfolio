@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Code, Users, Award, Download } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import LazyImage from './LazyImage';
 
 const About = () => {
   const { t } = useLanguage();
@@ -55,10 +56,12 @@ const About = () => {
             className="relative"
           >
             <div className="relative z-10">
-              <img
+              <LazyImage
                 src="/lovable-uploads/c45d782c-2e07-41b2-877f-69e24d79b8f8.png"
                 alt="Sidharth - Software Engineer"
                 className="w-full max-w-md mx-auto rounded-2xl shadow-2xl"
+                width={400}
+                height={500}
               />
             </div>
             <div className="absolute -top-4 -right-4 w-full h-full bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl -z-10"></div>

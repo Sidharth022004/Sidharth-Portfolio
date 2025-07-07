@@ -4,20 +4,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="color-scheme" content="light dark" />
     <title>canvas-of-expertise</title>
     <meta name="description" content="Professional Portfolio" />
     <meta name="author" content="Your Name" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/lovable-uploads/4a7b4553-2938-4dd1-aea7-73733ae61ded.png" as="image" />
+    <link rel="preload" href="/lovable-uploads/c45d782c-2e07-41b2-877f-69e24d79b8f8.png" as="image" />
+    
+    <!-- DNS prefetch for external domains -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    
+    <!-- Favicon and app icons -->
     <link rel="icon" href="/lovable-uploads/814754c1-29ce-4604-8716-b890594dded3.png" type="image/png">
+    <link rel="apple-touch-icon" href="/lovable-uploads/814754c1-29ce-4604-8716-b890594dded3.png" />
+    <link rel="manifest" href="/manifest.json" />
 
+    <!-- Open Graph and social media meta tags -->
     <meta property="og:title" content="canvas-of-expertise" />
     <meta property="og:description" content="Professional Portfolio" />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="/lovable-uploads/c45d782c-2e07-41b2-877f-69e24d79b8f8.png" />
+    <meta property="og:url" content="https://sidha.netlify.app" />
 
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sidharth - Aspiring Software Developer" />
+    <meta name="twitter:description" content="BCA Student passionate about technology and software development" />
+    <meta name="twitter:image" content="/lovable-uploads/c45d782c-2e07-41b2-877f-69e24d79b8f8.png" />
+    
+    <!-- Performance and SEO optimizations -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://sidha.netlify.app" />
   </head>
 
   <body>
     <div id="root"></div>
+    
+    <!-- Register service worker for caching -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+    
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>

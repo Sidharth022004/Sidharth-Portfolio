@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
+import LazyImage from './LazyImage';
 
 const testimonials = [
   {
@@ -77,10 +78,12 @@ const Testimonials = () => {
               </div>
 
               <div className="flex items-center space-x-4">
-                <img
+                <LazyImage
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover"
+                  className="w-12 h-12 rounded-full"
+                  width={48}
+                  height={48}
                 />
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white">

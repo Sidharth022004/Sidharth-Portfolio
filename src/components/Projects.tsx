@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, X, Calendar, Tag } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import LazyImage from './LazyImage';
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
@@ -94,12 +95,12 @@ const Projects = () => {
               onClick={() => setSelectedProject(index)}
             >
               <div className="relative overflow-hidden">
-                <motion.img
+                <LazyImage
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.4 }}
+                  className="w-full h-48"
+                  width={600}
+                  height={192}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                   <div className="p-4 text-white">
@@ -182,10 +183,12 @@ const Projects = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="relative">
-                  <img
+                  <LazyImage
                     src={projects[selectedProject].image}
                     alt={projects[selectedProject].title}
-                    className="w-full h-64 object-cover"
+                    className="w-full h-64"
+                    width={800}
+                    height={256}
                   />
                   <button
                     onClick={() => setSelectedProject(null)}
