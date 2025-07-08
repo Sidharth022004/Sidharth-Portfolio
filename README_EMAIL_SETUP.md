@@ -29,6 +29,7 @@ The contact form is already set up with the following EmailJS configuration:
 3. **Rate limiting** prevents spam by enforcing a 1-minute cooldown between submissions
 4. **Input sanitization** cleans the data before sending
 5. **EmailJS API** sends the email directly to `sid240711@gmail.com`
+5. **EmailJS API** sends the email directly to `sidharthkardam287@gmail.com`
 6. **Success/Error feedback** is shown to the user
 7. **Form resets** automatically after successful submission
 
@@ -41,7 +42,7 @@ The following variables are sent to your EmailJS template:
 - `{{subject}}` - Message subject
 - `{{message}}` - Message content
 - `{{to_name}}` - Your name (Sidharth)
-- `{{to_email}}` - Your email (sid240711@gmail.com)
+- `{{to_email}}` - Your email (sidharthkardam287@gmail.com)
 - `{{reply_to}}` - Reply-to address (sender's email)
 
 ## EmailJS Template Setup
@@ -82,7 +83,7 @@ The contact form is ready to test:
 
 1. Fill out all required fields
 2. Click "Send Message"
-3. Check your email at `sid240711@gmail.com`
+3. Check your email at `sidharthkardam287@gmail.com`
 4. Verify the form shows success message
 5. Test validation by submitting incomplete forms
 

@@ -98,11 +98,11 @@ const Contact = () => {
       
       if (error instanceof Error) {
         if (error.message.includes('422')) {
-          errorMessage = 'There seems to be a configuration issue with the email service. Please contact me directly at sid240711@gmail.com or call +91 9870220973.';
+          errorMessage = 'There seems to be a configuration issue with the email service. Please contact me directly at sidharthkardam287@gmail.com or call +91 9870220973.';
         } else if (error.message.includes('401')) {
-          errorMessage = 'Email service authentication failed. Please contact me directly at sid240711@gmail.com.';
+          errorMessage = 'Email service authentication failed. Please contact me directly at sidharthkardam287@gmail.com.';
         } else if (error.message.includes('404')) {
-          errorMessage = 'Email service not found. Please contact me directly at sid240711@gmail.com.';
+          errorMessage = 'Email service not found. Please contact me directly at sidharthkardam287@gmail.com.';
         } else if (error.message.includes('network') || error.message.includes('fetch')) {
           errorMessage = 'Network error. Please check your connection and try again, or contact me directly.';
         }

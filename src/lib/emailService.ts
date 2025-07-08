@@ -28,7 +28,7 @@ export const sendEmail = async (data: EmailData): Promise<boolean> => {
       subject: data.subject,
       message: data.message,
       to_name: 'Sidharth',
-      to_email: 'sid240711@gmail.com',
+      to_email: 'sidharthkardam287@gmail.com',
       reply_to: data.email,
       // Additional common template variables that might be expected
       user_name: data.name,
