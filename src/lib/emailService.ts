@@ -1,3 +1,5 @@
+import emailjs from 'emailjs-com';
+
 // Email service configuration and utilities
 export interface EmailData {
   name: string;
@@ -44,45 +46,15 @@ export const sendEmail = async (data: EmailData): Promise<boolean> => {
       template_params: templateParams
     });
 
-    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        service_id: emailConfig.serviceId,
-        template_id: emailConfig.templateId,
-        user_id: emailConfig.userId,
-        template_params: templateParams
-      })
-    });
+    const result = await emailjs.send(
+      emailConfig.serviceId,
+      emailConfig.templateId,
+      templateParams,
+      emailConfig.userId
+    );
 
-    // Get response text for better error debugging
-    const responseText = await response.text();
-    
-    if (!response.ok) {
-      console.error('EmailJS API Error:', {
-        status: response.status,
-        statusText: response.statusText,
-        response: responseText
-      });
-      
-      // Provide more specific error messages based on status code
-      if (response.status === 422) {
-        throw new Error(`EmailJS configuration error (422): The template parameters may not match your EmailJS template. Please check your EmailJS dashboard to ensure the template variables are correctly configured. Response: ${responseText}`);
-      } else if (response.status === 400) {
-        throw new Error(`Bad request (400): Invalid EmailJS configuration or parameters. Response: ${responseText}`);
-      } else if (response.status === 401) {
-        throw new Error(`Unauthorized (401): Invalid EmailJS user ID or service configuration. Response: ${responseText}`);
-      } else if (response.status === 404) {
-        throw new Error(`Not found (404): EmailJS service or template not found. Response: ${responseText}`);
-      } else {
-        throw new Error(`HTTP error! status: ${response.status}, response: ${responseText}`);
-      }
-    }
-
-    console.log('Email sent successfully:', responseText);
-    return true;
+    console.log('Email sent successfully:', result);
+    return result.status === 200;
   } catch (error) {
     console.error('Error sending email:', error);
     throw error; // Re-throw to let the component handle it
