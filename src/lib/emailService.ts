@@ -23,6 +23,10 @@ export const emailConfig: EmailJSConfig = {
 
 export const sendEmail = async (data: EmailData): Promise<boolean> => {
   try {
+    console.log('=== EMAIL SERVICE DEBUG ===');
+    console.log('EmailJS Config:', emailConfig);
+    console.log('Input data:', data);
+    
     // Prepare template parameters - using common EmailJS template variable names
     const templateParams = {
       from_name: data.name,
