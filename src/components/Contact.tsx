@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, CheckCircle, AlertCircle, Mail, Phone, MapPin } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { sendEmail, validateEmail, sanitizeInput, checkRateLimit, type EmailData } from '../lib/emailService';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,27 +14,37 @@ const Contact = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const validateForm = () => {
+  const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
     
+    // Name validation
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
     }
     
+    // Email validation
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
     }
     
+    // Subject validation
     if (!formData.subject.trim()) {
       newErrors.subject = 'Subject is required';
+    } else if (formData.subject.trim().length < 5) {
+      newErrors.subject = 'Subject must be at least 5 characters';
     }
     
+    // Message validation
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
-    } else if (formData.message.length < 10) {
+    } else if (formData.message.trim().length < 10) {
       newErrors.message = 'Message must be at least 10 characters';
+    } else if (formData.message.length > 1000) {
+      newErrors.message = 'Message must be less than 1000 characters';
     }
     
     setErrors(newErrors);
@@ -45,86 +56,51 @@ const Contact = () => {
     
     if (!validateForm()) return;
     
+    // Check rate limiting
+    if (!checkRateLimit()) {
+      setSubmitStatus('error');
+      setErrors({ submit: 'Please wait a minute before sending another message.' });
+      return;
+    }
+    
     setIsSubmitting(true);
     setSubmitStatus('sending');
+    setErrors({});
     
     try {
-      // Using EmailJS for email functionality
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          service_id: 'service_zcs78oe',
-          template_id: 'template_contact',
-          user_id: 'ei0M6UgMq2pVvKGNg',
-          template_params: {
-            from_name: formData.name,
-            from_email: formData.email,
-            subject: formData.subject,
-            message: formData.message,
-            to_email: 'sid240711@gmail.com'
-          }
-        })
-      });
+      // Sanitize form data
+      const sanitizedData: EmailData = {
+        name: sanitizeInput(formData.name),
+        email: sanitizeInput(formData.email),
+        subject: sanitizeInput(formData.subject),
+        message: sanitizeInput(formData.message)
+      };
 
-      if (response.ok) {
+      const success = await sendEmail(sanitizedData);
+
+      if (success) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
-        setErrors({});
         
-        // Auto-reply functionality
-        await sendAutoReply();
-        
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setSubmitStatus('idle');
+        }, 5000);
       } else {
         throw new Error('Failed to send email');
       }
     } catch (error) {
       console.error('Error sending email:', error);
       setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
+      setErrors({ submit: 'Failed to send message. Please try again or contact me directly.' });
       
-      // Reset status after 5 seconds
+      // Reset error message after 5 seconds
       setTimeout(() => {
         setSubmitStatus('idle');
+        setErrors({});
       }, 5000);
-    }
-  };
-
-  const sendAutoReply = async () => {
-    try {
-      await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          service_id: 'service_zcs78oe',
-          template_id: 'template_auto_reply',
-          user_id: 'ei0M6UgMq2pVvKGNg',
-          template_params: {
-            to_name: formData.name,
-            to_email: formData.email,
-            subject: 'Thank you for contacting me!',
-            message: `Hi ${formData.name},
-
-Thank you for reaching out! I've received your message about "${formData.subject}" and I appreciate you taking the time to contact me.
-
-I'll review your message and get back to you within 24-48 hours. In the meantime, feel free to check out my projects and experience on my portfolio.
-
-Best regards,
-Sidharth
-Software Engineer with AI Integration
-
----
-This is an automated response. Please do not reply to this email.`
-          }
-        })
-      });
-    } catch (error) {
-      console.error('Error sending auto-reply:', error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -222,13 +198,28 @@ This is an automated response. Please do not reply to this email.`
                   </p>
                 </div>
               </motion.div>
+
+              <motion.div 
+                className="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center">
+                  <Clock className="text-white" size={20} />
+                </div>
+                <div>
+                  <h4 className="font-semibold">Response Time</h4>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Within 24 hours
+                  </p>
+                </div>
+              </motion.div>
             </div>
 
             <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 p-6 rounded-lg">
-              <h4 className="font-semibold mb-2">Response Time</h4>
+              <h4 className="font-semibold mb-2">Quick Response Guaranteed</h4>
               <p className="text-sm text-gray-600 dark:text-gray-300">
                 I typically respond to all inquiries within 24-48 hours. For urgent matters, 
-                feel free to call me directly.
+                feel free to call me directly at the number above.
               </p>
             </div>
           </motion.div>
@@ -241,6 +232,7 @@ This is an automated response. Please do not reply to this email.`
             transition={{ duration: 0.6 }}
             className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg"
           >
+            {/* Success Message */}
             {submitStatus === 'success' && (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
@@ -252,6 +244,7 @@ This is an automated response. Please do not reply to this email.`
               </motion.div>
             )}
 
+            {/* Error Message */}
             {submitStatus === 'error' && (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
@@ -259,7 +252,7 @@ This is an automated response. Please do not reply to this email.`
                 className="mb-6 p-4 bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-700 rounded-lg flex items-center space-x-2 text-red-700 dark:text-red-300"
               >
                 <AlertCircle size={20} />
-                <span>Sorry, there was an error sending your message. Please try again or email me directly.</span>
+                <span>{errors.submit || 'Sorry, there was an error sending your message. Please try again or email me directly.'}</span>
               </motion.div>
             )}
 
@@ -398,6 +391,8 @@ This is an automated response. Please do not reply to this email.`
                   <span className={`text-sm ${
                     formData.message.length >= 10 
                       ? 'text-green-600 dark:text-green-400' 
+                      : formData.message.length > 1000
+                      ? 'text-red-600 dark:text-red-400'
                       : 'text-gray-400'
                   }`}>
                     {formData.message.length}/1000
