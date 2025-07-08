@@ -92,7 +92,23 @@ const Contact = () => {
     } catch (error) {
       console.error('Error sending email:', error);
       setSubmitStatus('error');
-      setErrors({ submit: 'Failed to send message. Please try again or contact me directly.' });
+      
+      // Provide more specific error messages
+      let errorMessage = 'Failed to send message. Please try again or contact me directly.';
+      
+      if (error instanceof Error) {
+        if (error.message.includes('422')) {
+          errorMessage = 'There seems to be a configuration issue with the email service. Please contact me directly at sid240711@gmail.com or call +91 9870220973.';
+        } else if (error.message.includes('401')) {
+          errorMessage = 'Email service authentication failed. Please contact me directly at sid240711@gmail.com.';
+        } else if (error.message.includes('404')) {
+          errorMessage = 'Email service not found. Please contact me directly at sid240711@gmail.com.';
+        } else if (error.message.includes('network') || error.message.includes('fetch')) {
+          errorMessage = 'Network error. Please check your connection and try again, or contact me directly.';
+        }
+      }
+      
+      setErrors({ submit: errorMessage });
       
       // Reset error message after 5 seconds
       setTimeout(() => {
