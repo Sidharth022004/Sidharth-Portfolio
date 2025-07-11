@@ -22,11 +22,11 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
+    <footer className="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_50%,_theme(colors.blue.600)_0%,_transparent_50%)] opacity-20"></div>
-        <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_50%,_theme(colors.purple.600)_0%,_transparent_50%)] opacity-20"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_50%,_theme(colors.blue.400)_0%,_transparent_50%)] opacity-30"></div>
+        <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_50%,_theme(colors.purple.400)_0%,_transparent_50%)] opacity-30"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -50,7 +50,7 @@ const Footer = () => {
               {/* Contact Information */}
               <div className="space-y-3 mb-6">
                 <div className="flex items-center space-x-3 text-gray-300">
-                  <Phone size={18} className="text-blue-400" />
+                  <Phone size={18} className="text-green-400" />
                   <a href="tel:9870220973" className="hover:text-white transition-colors">
                     9870220973
                   </a>
@@ -62,7 +62,7 @@ const Footer = () => {
                   </a>
                 </div>
                 <div className="flex items-start space-x-3 text-gray-300">
-                  <MapPin size={18} className="text-blue-400 mt-0.5" />
+                  <MapPin size={18} className="text-purple-400 mt-0.5" />
                   <span className="text-sm">
                     Vill. Bharthal, Dwarka Sec-26,<br />
                     South West Delhi 110077
@@ -123,7 +123,7 @@ const Footer = () => {
                 <a
                   key={index}
                   href={social.href}
-                  className="w-10 h-10 bg-gray-800 hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                  className="w-10 h-10 bg-gray-800 hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg border border-gray-700 hover:border-transparent"
                   aria-label={social.label}
                 >
                   {social.icon}

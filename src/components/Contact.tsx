@@ -136,7 +136,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-gray-900">
+    <section id="contact" className="py-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-blue-900/20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -146,7 +146,7 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6 rounded-full"></div>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             I'm always interested in new opportunities and exciting projects. Let's build something amazing together!
           </p>
@@ -171,10 +171,10 @@ const Contact = () => {
 
             <div className="space-y-6">
               <motion.div 
-                className="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-800 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200 dark:border-gray-700"
                 whileHover={{ scale: 1.02 }}
               >
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-lg">
                   <Mail className="text-white" size={20} />
                 </div>
                 <div>
@@ -186,10 +186,10 @@ const Contact = () => {
               </motion.div>
 
               <motion.div 
-                className="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-800 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200 dark:border-gray-700"
                 whileHover={{ scale: 1.02 }}
               >
-                <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-green-700 rounded-full flex items-center justify-center shadow-lg">
                   <Phone className="text-white" size={20} />
                 </div>
                 <div>
@@ -201,10 +201,10 @@ const Contact = () => {
               </motion.div>
 
               <motion.div 
-                className="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-800 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200 dark:border-gray-700"
                 whileHover={{ scale: 1.02 }}
               >
-                <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full flex items-center justify-center shadow-lg">
                   <MapPin className="text-white" size={20} />
                 </div>
                 <div>
@@ -216,10 +216,10 @@ const Contact = () => {
               </motion.div>
 
               <motion.div 
-                className="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-800 rounded-lg hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200 dark:border-gray-700"
                 whileHover={{ scale: 1.02 }}
               >
-                <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-orange-600 to-orange-700 rounded-full flex items-center justify-center shadow-lg">
                   <Clock className="text-white" size={20} />
                 </div>
                 <div>
@@ -231,7 +231,7 @@ const Contact = () => {
               </motion.div>
             </div>
 
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 p-6 rounded-lg">
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 p-6 rounded-lg border border-blue-200 dark:border-blue-700 shadow-md">
               <h4 className="font-semibold mb-2">Quick Response Guaranteed</h4>
               <p className="text-sm text-gray-600 dark:text-gray-300">
                 I typically respond to all inquiries within 24-48 hours. For urgent matters, 
@@ -246,7 +246,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg"
+            className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700"
           >
             {/* Success Message */}
             {submitStatus === 'success' && (

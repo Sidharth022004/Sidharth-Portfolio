@@ -45,7 +45,7 @@ const Header = ({ isDarkMode, toggleDarkMode, activeSection, scrollToSection }: 
     <motion.header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200 dark:border-gray-700' 
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-blue-200 dark:border-blue-700' 
           : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm'
       }`}
       initial={{ y: -100 }}
@@ -55,7 +55,7 @@ const Header = ({ isDarkMode, toggleDarkMode, activeSection, scrollToSection }: 
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <div className="flex justify-between items-center h-16">
           <motion.div 
-            className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+            className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-purple-600 hover:to-indigo-600 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
           >
             Sidharth.dev
@@ -69,8 +69,8 @@ const Header = ({ isDarkMode, toggleDarkMode, activeSection, scrollToSection }: 
                 onClick={() => handleScrollToSection(id)}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                   activeSection === id 
-                    ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shadow-sm' 
-                    : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300'
+                    ? 'bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-600 dark:text-blue-400 shadow-sm border border-blue-200 dark:border-blue-700' 
+                    : 'hover:bg-gradient-to-r hover:from-gray-100 hover:to-blue-50 dark:hover:from-gray-800 dark:hover:to-blue-900/20 text-gray-600 dark:text-gray-300'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

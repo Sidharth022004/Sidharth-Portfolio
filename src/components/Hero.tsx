@@ -80,14 +80,12 @@ const Hero = ({ scrollToSection }: HeroProps) => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Vanta.js Topology Background */}
-      <div 
-        ref={vantaRef}
-        className="absolute inset-0"
-      />
-      
-      {/* Subtle overlay for text readability */}
-      <div className="absolute inset-0 bg-black/20"></div>
+      {/* Enhanced Background with Consistent Theme */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,_theme(colors.blue.600/20)_0%,_transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,_theme(colors.purple.600/20)_0%,_transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-black/30"></div>
+      </div>
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">

@@ -63,7 +63,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-800">
+    <section id="projects" className="py-20 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-gray-800 dark:to-purple-900/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -73,7 +73,7 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('projects.title')}</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-indigo-600 mx-auto mb-6 rounded-full"></div>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             {t('projects.subtitle')}
           </p>
@@ -90,7 +90,7 @@ const Projects = () => {
             <motion.article
               key={index}
               variants={itemVariants}
-              className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer"
+              className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600"
               whileHover={{ y: -8, scale: 1.02 }}
               onClick={() => setSelectedProject(index)}
             >
@@ -127,7 +127,7 @@ const Projects = () => {
                   {project.tech.slice(0, 3).map((tech, techIndex) => (
                     <motion.span
                       key={techIndex}
-                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm rounded-full font-medium"
+                      className="px-3 py-1 bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/30 dark:to-indigo-900/30 text-purple-700 dark:text-purple-300 text-sm rounded-full font-medium border border-purple-200 dark:border-purple-700"
                       whileHover={{ scale: 1.05 }}
                     >
                       {tech}
@@ -143,7 +143,7 @@ const Projects = () => {
                 <div className="flex gap-4">
                   <motion.a
                     href={project.liveUrl}
-                    className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-medium"
+                    className="flex items-center space-x-2 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors font-medium"
                     whileHover={{ scale: 1.05 }}
                     onClick={(e) => e.stopPropagation()}
                   >
@@ -152,7 +152,7 @@ const Projects = () => {
                   </motion.a>
                   <motion.a
                     href={project.githubUrl}
-                    className="flex items-center space-x-2 text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 transition-colors font-medium"
+                    className="flex items-center space-x-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors font-medium"
                     whileHover={{ scale: 1.05 }}
                     onClick={(e) => e.stopPropagation()}
                   >

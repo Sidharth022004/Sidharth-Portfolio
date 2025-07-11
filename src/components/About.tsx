@@ -31,7 +31,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-white dark:bg-gray-900">
+    <section id="about" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,7 +41,7 @@ const About = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('about.title')}</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6 rounded-full"></div>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             {t('about.subtitle')}
           </p>
@@ -59,12 +59,12 @@ const About = () => {
               <LazyImage
                 src="/lovable-uploads/c45d782c-2e07-41b2-877f-69e24d79b8f8.png"
                 alt="Sidharth - Software Engineer"
-                className="w-full max-w-md mx-auto rounded-2xl shadow-2xl"
+                className="w-full max-w-md mx-auto rounded-2xl shadow-2xl ring-4 ring-blue-500/20"
                 width={400}
                 height={500}
               />
             </div>
-            <div className="absolute -top-4 -right-4 w-full h-full bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl -z-10"></div>
+            <div className="absolute -top-4 -right-4 w-full h-full bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl -z-10 opacity-80"></div>
             
             {/* Floating Elements */}
             <motion.div
@@ -130,8 +130,10 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl hover:shadow-lg transition-shadow duration-300 text-center group"
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="bg-white dark:bg-gray-800 p-6 rounded-xl hover:shadow-xl transition-all duration-300 text-center group border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600"
             >
-              <div className="text-blue-600 dark:text-blue-400 mb-4 flex justify-center group-hover:scale-110 transition-transform duration-300">
+              <div className="text-blue-600 dark:text-blue-400 mb-4 flex justify-center group-hover:scale-110 transition-transform duration-300 bg-blue-50 dark:bg-blue-900/30 w-12 h-12 rounded-full items-center mx-auto">
                 {item.icon}
               </div>
               <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
@@ -146,7 +148,7 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8"
+          className="mt-16 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 border border-blue-200 dark:border-blue-800"
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
