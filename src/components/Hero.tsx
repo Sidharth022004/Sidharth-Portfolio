@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ArrowDown, Sparkles, Code, Database, Palette } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -9,6 +9,8 @@ interface HeroProps {
 
 const Hero = ({ scrollToSection }: HeroProps) => {
   const { t } = useLanguage();
+  const vantaRef = useRef<HTMLDivElement>(null);
+  const vantaEffect = useRef<any>(null);
   
   const taglines = [
     t('hero.tagline1'),
@@ -19,6 +21,56 @@ const Hero = ({ scrollToSection }: HeroProps) => {
 
   const [currentTagline, setCurrentTagline] = React.useState(0);
 
+  // Initialize Vanta.js topology background
+  useEffect(() => {
+    if (vantaRef.current && !vantaEffect.current) {
+      // Load Vanta.js scripts dynamically
+      const loadVanta = async () => {
+        // Load p5.js first
+        const p5Script = document.createElement('script');
+        p5Script.src = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js';
+        document.head.appendChild(p5Script);
+
+        await new Promise((resolve) => {
+          p5Script.onload = resolve;
+        });
+
+        // Load Vanta topology
+        const vantaScript = document.createElement('script');
+        vantaScript.src = 'https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js';
+        document.head.appendChild(vantaScript);
+
+        await new Promise((resolve) => {
+          vantaScript.onload = resolve;
+        });
+
+        // Initialize Vanta effect
+        if ((window as any).VANTA && vantaRef.current) {
+          vantaEffect.current = (window as any).VANTA.TOPOLOGY({
+            el: vantaRef.current,
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            backgroundColor: 0x2222,
+            color: 0x89964e
+          });
+        }
+      };
+
+      loadVanta();
+    }
+
+    return () => {
+      if (vantaEffect.current) {
+        vantaEffect.current.destroy();
+      }
+    };
+  }, []);
+
   React.useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTagline((prev) => (prev + 1) % taglines.length);
@@ -28,17 +80,14 @@ const Hero = ({ scrollToSection }: HeroProps) => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Enhanced Background */}
+      {/* Vanta.js Topology Background */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('/lovable-uploads/4a7b4553-2938-4dd1-aea7-73733ae61ded.png')`
-        }}
+        ref={vantaRef}
+        className="absolute inset-0"
       />
       
-      {/* Enhanced Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/85 via-purple-600/85 to-cyan-500/85"></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+      {/* Subtle overlay for text readability */}
+      <div className="absolute inset-0 bg-black/20"></div>
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
