@@ -44,8 +44,12 @@ const Hero = ({ scrollToSection }: HeroProps) => {
           vantaScript.onload = resolve;
         });
 
-        // Initialize Vanta effect
+        // Initialize Vanta effect with theme colors
         if ((window as any).VANTA && vantaRef.current) {
+          // Get theme colors from CSS variables
+          const computedStyle = getComputedStyle(document.documentElement);
+          const isDark = document.documentElement.classList.contains('dark');
+          
           vantaEffect.current = (window as any).VANTA.TOPOLOGY({
             el: vantaRef.current,
             mouseControls: true,
@@ -55,8 +59,10 @@ const Hero = ({ scrollToSection }: HeroProps) => {
             minWidth: 200.00,
             scale: 1.00,
             scaleMobile: 1.00,
-            backgroundColor: 0x2222,
-            color: 0x89964e
+            backgroundColor: isDark ? 0x1a1a1a : 0xfafafa,
+            color: 0x3b82f6, // Primary blue theme color
+            spacing: 20,
+            points: 15
           });
         }
       };
@@ -80,45 +86,47 @@ const Hero = ({ scrollToSection }: HeroProps) => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Enhanced Background with Consistent Theme */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,_theme(colors.blue.600/20)_0%,_transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,_theme(colors.purple.600/20)_0%,_transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-black/30"></div>
-      </div>
+      {/* Vanta.js Topology Background */}
+      <div 
+        ref={vantaRef}
+        className="absolute inset-0 bg-background"
+      />
+      
+      {/* Overlay for better content visibility */}
+      <div className="absolute inset-0 bg-background/80 dark:bg-background/60" />
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-20 left-10 text-white/20"
+          className="absolute top-20 left-10 text-primary/20"
           animate={{ y: [-10, 10, -10], rotate: [0, 180, 360] }}
           transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
         >
           <Code size={32} />
         </motion.div>
         <motion.div
-          className="absolute bottom-32 right-20 text-white/20"
+          className="absolute bottom-32 right-20 text-primary/20"
           animate={{ y: [10, -10, 10], rotate: [360, 180, 0] }}
           transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
         >
           <Database size={28} />
         </motion.div>
         <motion.div
-          className="absolute top-1/3 right-10 text-white/20"
+          className="absolute top-1/3 right-10 text-primary/20"
           animate={{ y: [-15, 15, -15], x: [-5, 5, -5] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         >
           <Palette size={24} />
         </motion.div>
-        <div className="absolute top-20 left-1/4 text-white/30">
+        <div className="absolute top-20 left-1/4 text-primary/30">
           <Sparkles size={24} />
         </div>
-        <div className="absolute bottom-20 left-1/3 text-white/30">
+        <div className="absolute bottom-20 left-1/3 text-primary/30">
           <Sparkles size={18} />
         </div>
       </div>
 
-      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 text-center text-foreground px-4 max-w-4xl mx-auto">
         <motion.h1 
           className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
           initial={{ opacity: 0, y: 30 }}
@@ -126,7 +134,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
           transition={{ duration: 0.8 }}
         >
           {t('hero.greeting')}{' '}
-          <span className="text-yellow-300 bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
+          <span className="text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
             {t('hero.name')}
           </span>
         </motion.h1>
@@ -140,7 +148,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
         >
           <motion.span
             key={currentTagline}
-            className="font-semibold text-yellow-300 inline-block"
+            className="font-semibold text-primary inline-block"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -151,7 +159,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
         </motion.div>
 
         <motion.p 
-          className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed text-gray-100"
+          className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed text-muted-foreground"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
@@ -167,16 +175,16 @@ const Hero = ({ scrollToSection }: HeroProps) => {
           transition={{ delay: 1.0, duration: 0.8 }}
         >
           <div className="text-center">
-            <div className="text-3xl font-bold text-yellow-300">2+</div>
-            <div className="text-sm text-gray-200">{t('hero.stats.years')}</div>
+            <div className="text-3xl font-bold text-primary">2+</div>
+            <div className="text-sm text-muted-foreground">{t('hero.stats.years')}</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-yellow-300">5+</div>
-            <div className="text-sm text-gray-200">{t('hero.stats.projects')}</div>
+            <div className="text-3xl font-bold text-primary">5+</div>
+            <div className="text-sm text-muted-foreground">{t('hero.stats.projects')}</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-yellow-300">100%</div>
-            <div className="text-sm text-gray-200">{t('hero.stats.dedicated')}</div>
+            <div className="text-3xl font-bold text-primary">100%</div>
+            <div className="text-sm text-muted-foreground">{t('hero.stats.dedicated')}</div>
           </div>
         </motion.div>
         
@@ -188,7 +196,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
         >
           <button
             onClick={() => scrollToSection('projects')}
-            className="group bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 hover:-translate-y-0.5"
+            className="group bg-primary text-primary-foreground px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 hover:-translate-y-0.5"
           >
             <span className="flex items-center space-x-2">
               <span>{t('hero.viewWork')}</span>
@@ -200,7 +208,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
           
           <button
             onClick={() => scrollToSection('contact')}
-            className="group border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-white hover:text-blue-600 hover:scale-105 hover:-translate-y-0.5"
+            className="group border-2 border-primary text-primary px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-105 hover:-translate-y-0.5"
           >
             {t('hero.getInTouch')}
           </button>
@@ -213,10 +221,10 @@ const Hero = ({ scrollToSection }: HeroProps) => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.8 }}
         >
-          <p className="text-sm text-gray-200 mb-4">{t('hero.scrollExplore')}</p>
+          <p className="text-sm text-muted-foreground mb-4">{t('hero.scrollExplore')}</p>
           <motion.button
             onClick={() => scrollToSection('about')}
-            className="text-white hover:text-yellow-300 transition-colors hover:scale-110"
+            className="text-foreground hover:text-primary transition-colors hover:scale-110"
             aria-label="Scroll down to about section"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

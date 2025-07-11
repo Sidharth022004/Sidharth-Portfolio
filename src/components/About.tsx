@@ -129,9 +129,8 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl hover:shadow-lg transition-shadow duration-300 text-center group"
-              whileHover={{ y: -5, scale: 1.02 }}
               className="bg-white dark:bg-gray-800 p-6 rounded-xl hover:shadow-xl transition-all duration-300 text-center group border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600"
+              whileHover={{ y: -5, scale: 1.02 }}
             >
               <div className="text-blue-600 dark:text-blue-400 mb-4 flex justify-center group-hover:scale-110 transition-transform duration-300 bg-blue-50 dark:bg-blue-900/30 w-12 h-12 rounded-full items-center mx-auto">
                 {item.icon}
