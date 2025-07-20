@@ -59,8 +59,8 @@ const Hero = ({ scrollToSection }: HeroProps) => {
             minWidth: 200.00,
             scale: 1.00,
             scaleMobile: 1.00,
-            backgroundColor: isDark ? 0x1a1a1a : 0xfafafa,
-            color: 0x3b82f6, // Primary blue theme color
+            backgroundColor: 0x2222,
+            color: 0x89964e,
             spacing: 20,
             points: 15
           });
