@@ -46,9 +46,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
 
         // Initialize Vanta effect with theme colors
         if ((window as any).VANTA && vantaRef.current) {
-          // Get theme colors from CSS variables
-          const computedStyle = getComputedStyle(document.documentElement);
-          const isDark = document.documentElement.classList.contains('dark');
+          console.log('Initializing Vanta.js topology background');
           
           vantaEffect.current = (window as any).VANTA.TOPOLOGY({
             el: vantaRef.current,
@@ -64,6 +62,10 @@ const Hero = ({ scrollToSection }: HeroProps) => {
             spacing: 20,
             points: 15
           });
+          
+          console.log('Vanta.js effect created:', vantaEffect.current);
+        } else {
+          console.error('Vanta.js not loaded or element not found');
         }
       };
 
@@ -92,8 +94,8 @@ const Hero = ({ scrollToSection }: HeroProps) => {
         className="absolute inset-0 bg-background"
       />
       
-      {/* Overlay for better content visibility */}
-      <div className="absolute inset-0 bg-background/80 dark:bg-background/60" />
+      {/* Lighter overlay for better Vanta.js visibility */}
+      <div className="absolute inset-0 bg-background/20 dark:bg-background/10" />
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
