@@ -51,7 +51,7 @@ const Hero = ({ scrollToSection }: HeroProps) => {
             });
           }
 
-          // Initialize Vanta effect with your exact colors
+          // Initialize Vanta effect with your exact settings
           if ((window as any).VANTA && vantaRef.current) {
             console.log('Initializing Vanta.js topology background');
             
@@ -64,10 +64,8 @@ const Hero = ({ scrollToSection }: HeroProps) => {
               minWidth: 200.00,
               scale: 1.00,
               scaleMobile: 1.00,
-              backgroundColor: 0x222222,
-              color: 0x89964e,
-              spacing: 20,
-              points: 15
+              backgroundColor: 0x2222,
+              color: 0x89964e
             });
             
             console.log('Vanta.js effect created successfully');
