@@ -23,64 +23,74 @@ const Hero = ({ scrollToSection }: HeroProps) => {
 
   // Initialize Vanta.js topology background
   useEffect(() => {
-    if (vantaRef.current && !vantaEffect.current) {
-      // Load Vanta.js scripts dynamically
-      const loadVanta = async () => {
-        try {
-          // Load p5.js first
-          if (!(window as any).p5) {
-            const p5Script = document.createElement('script');
-            p5Script.src = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js';
-            document.head.appendChild(p5Script);
+    if (!vantaRef.current || vantaEffect.current) return;
 
-            await new Promise((resolve, reject) => {
-              p5Script.onload = resolve;
-              p5Script.onerror = reject;
-            });
-          }
+    const loadVanta = async () => {
+      try {
+        // Load p5.js first
+        if (!(window as any).p5) {
+          const p5Script = document.createElement('script');
+          p5Script.src = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js';
+          p5Script.async = true;
+          document.head.appendChild(p5Script);
 
-          // Load Vanta topology
-          if (!(window as any).VANTA) {
-            const vantaScript = document.createElement('script');
-            vantaScript.src = 'https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js';
-            document.head.appendChild(vantaScript);
-
-            await new Promise((resolve, reject) => {
-              vantaScript.onload = resolve;
-              vantaScript.onerror = reject;
-            });
-          }
-
-          // Initialize Vanta effect with your exact settings
-          if ((window as any).VANTA && vantaRef.current) {
-            console.log('Initializing Vanta.js topology background');
-            
-            vantaEffect.current = (window as any).VANTA.TOPOLOGY({
-              el: vantaRef.current,
-              mouseControls: true,
-              touchControls: true,
-              gyroControls: false,
-              minHeight: 200.00,
-              minWidth: 200.00,
-              scale: 1.00,
-              scaleMobile: 1.00,
-              backgroundColor: 0x2222,
-              color: 0x89964e
-            });
-            
-            console.log('Vanta.js effect created successfully');
-          }
-        } catch (error) {
-          console.error('Error loading Vanta.js:', error);
+          await new Promise((resolve, reject) => {
+            p5Script.onload = resolve;
+            p5Script.onerror = reject;
+            setTimeout(reject, 5000); // 5 second timeout
+          });
         }
-      };
 
-      loadVanta();
-    }
+        // Small delay to ensure p5 is fully loaded
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        // Load Vanta topology
+        if (!(window as any).VANTA) {
+          const vantaScript = document.createElement('script');
+          vantaScript.src = 'https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js';
+          vantaScript.async = true;
+          document.head.appendChild(vantaScript);
+
+          await new Promise((resolve, reject) => {
+            vantaScript.onload = resolve;
+            vantaScript.onerror = reject;
+            setTimeout(reject, 5000); // 5 second timeout
+          });
+        }
+
+        // Small delay to ensure Vanta is fully loaded
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        // Initialize Vanta effect
+        if ((window as any).VANTA?.TOPOLOGY && vantaRef.current) {
+          vantaEffect.current = (window as any).VANTA.TOPOLOGY({
+            el: vantaRef.current,
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            backgroundColor: 0x222222,
+            color: 0x89964e
+          });
+          console.log('Vanta topology initialized successfully');
+        }
+      } catch (error) {
+        console.error('Failed to load Vanta.js:', error);
+      }
+    };
+
+    loadVanta();
 
     return () => {
       if (vantaEffect.current) {
-        vantaEffect.current.destroy();
+        try {
+          vantaEffect.current.destroy();
+        } catch (error) {
+          console.error('Error destroying Vanta effect:', error);
+        }
         vantaEffect.current = null;
       }
     };
@@ -101,8 +111,8 @@ const Hero = ({ scrollToSection }: HeroProps) => {
         className="absolute inset-0 bg-background"
       />
       
-      {/* Lighter overlay for better Vanta.js visibility */}
-      <div className="absolute inset-0 bg-background/20 dark:bg-background/10" />
+      {/* Minimal overlay to maintain text readability */}
+      <div className="absolute inset-0 bg-black/10" />
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
