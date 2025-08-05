@@ -30,42 +30,38 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
-# Cache static assets for 1 year
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Cache images for 1 month
 [[headers]]
-  for = "*.jpg"
+  for = "/*.jpg"
   [headers.values]
     Cache-Control = "public, max-age=2592000"
 
 [[headers]]
-  for = "*.png"
+  for = "/*.png"
   [headers.values]
     Cache-Control = "public, max-age=2592000"
 
 [[headers]]
-  for = "*.webp"
+  for = "/*.webp"
   [headers.values]
     Cache-Control = "public, max-age=2592000"
 
-# Cache fonts for 1 year
 [[headers]]
-  for = "*.woff2"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Enable Gzip compression
-[[headers]]
-  for = "*.js"
+  for = "/*.woff2"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "*.css"
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
@@ -79,4 +75,4 @@
 [[headers]]
   for = "/"
   [headers.values]
-    Link = "</assets/main.css>; rel=preload; as=style, </assets/main.js>; rel=preload; as=script"
+    Link = "</assets/main.css>; rel=preload; as=style", "</assets/main.js>; rel=preload; as=script"
