@@ -31,7 +31,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20">
+    <section id="about" className="py-20 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-blue-900/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -130,13 +130,14 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-white dark:bg-gray-800 p-6 rounded-xl hover:shadow-xl transition-all duration-300 text-center group border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600"
+             className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl hover:shadow-xl transition-all duration-300 text-center group border border-gray-200/50 dark:border-gray-700/50 hover:border-blue-300/70 dark:hover:border-blue-600/70 hover:bg-white dark:hover:bg-gray-800"
               whileHover={{ y: -5, scale: 1.02 }}
             >
-              <div className="text-blue-600 dark:text-blue-400 mb-4 flex justify-center group-hover:scale-110 transition-transform duration-300 bg-blue-50 dark:bg-blue-900/30 w-12 h-12 rounded-full items-center mx-auto">
+              <div className="text-blue-600 dark:text-blue-400 mb-4 flex justify-center group-hover:scale-110 transition-transform duration-300 bg-blue-50/70 dark:bg-blue-900/20 w-12 h-12 rounded-full items-center mx-auto group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30">
                 {item.icon}
               </div>
-              <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">{item.description}</p>
+              <h3 className="font-semibold text-lg mb-2 text-gray-900 dark:text-gray-100">{item.title}</h3>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">{item.description}</p>
             </motion.div>
           ))}
         </motion.div>

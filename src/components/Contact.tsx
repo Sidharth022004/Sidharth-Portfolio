@@ -136,7 +136,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-blue-900/20">
+    <section id="contact" className="py-20 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-blue-900/10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -171,25 +171,25 @@ const Contact = () => {
 
             <div className="space-y-6">
               <motion.div 
-                className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-800 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200 dark:border-gray-700"
+                className="flex items-center space-x-4 p-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg hover:bg-blue-50/70 dark:hover:bg-blue-900/10 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:border-blue-300/50 dark:hover:border-blue-600/50"
                 whileHover={{ scale: 1.02 }}
               >
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-lg">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg hover:from-blue-600 hover:to-blue-700 transition-colors">
                   <Mail className="text-white" size={20} />
                 </div>
                 <div>
                   <h4 className="font-semibold">Email</h4>
-                  <a href="mailto:sid240711@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">
+                  <a href="mailto:sid240711@gmail.com" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:underline transition-colors">
                     sid240711@gmail.com
                   </a>
                 </div>
               </motion.div>
 
               <motion.div 
-                className="flex items-center space-x-4 p-4 bg-white dark:bg-gray-800 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200 dark:border-gray-700"
+                className="flex items-center space-x-4 p-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg hover:bg-green-50/70 dark:hover:bg-green-900/10 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200/50 dark:border-gray-700/50 hover:border-green-300/50 dark:hover:border-green-600/50"
                 whileHover={{ scale: 1.02 }}
               >
-                <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-green-700 rounded-full flex items-center justify-center shadow-lg">
+                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg hover:from-green-600 hover:to-green-700 transition-colors">
                   <Phone className="text-white" size={20} />
                 </div>
                 <div>

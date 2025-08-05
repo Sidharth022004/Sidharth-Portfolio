@@ -45,8 +45,8 @@ const Header = ({ isDarkMode, toggleDarkMode, activeSection, scrollToSection }: 
     <motion.header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-blue-200 dark:border-blue-700' 
-          : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm'
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200/50 dark:border-gray-700/50' 
+          : 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -69,8 +69,8 @@ const Header = ({ isDarkMode, toggleDarkMode, activeSection, scrollToSection }: 
                 onClick={() => handleScrollToSection(id)}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
                   activeSection === id 
-                    ? 'bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-600 dark:text-blue-400 shadow-sm border border-blue-200 dark:border-blue-700' 
-                    : 'hover:bg-gradient-to-r hover:from-gray-100 hover:to-blue-50 dark:hover:from-gray-800 dark:hover:to-blue-900/20 text-gray-600 dark:text-gray-300'
+                    ? 'bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 text-blue-600 dark:text-blue-400 shadow-sm border border-blue-200/50 dark:border-blue-700/50' 
+                    : 'hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50/50 dark:hover:from-gray-800/50 dark:hover:to-blue-900/10 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

@@ -22,11 +22,11 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
+    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-blue-900 text-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_50%,_theme(colors.blue.400)_0%,_transparent_50%)] opacity-30"></div>
-        <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_50%,_theme(colors.purple.400)_0%,_transparent_50%)] opacity-30"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_50%,_theme(colors.blue.500)_0%,_transparent_50%)] opacity-20"></div>
+        <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_50%,_theme(colors.purple.500)_0%,_transparent_50%)] opacity-20"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -41,28 +41,29 @@ const Footer = () => {
               className="mb-6"
             >
               <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
+             <div className="text-3xl font-bold bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent mb-4">
                 {t('footer.brand')}
               </div>
-              <p className="text-gray-300 text-lg leading-relaxed max-w-md mb-6">
+              <p className="text-gray-200 text-lg leading-relaxed max-w-md mb-6">
                 {t('footer.description')}
               </p>
               
               {/* Contact Information */}
               <div className="space-y-3 mb-6">
-                <div className="flex items-center space-x-3 text-gray-300">
-                  <Phone size={18} className="text-green-400" />
+                <div className="flex items-center space-x-3 text-gray-200">
+                  <Phone size={18} className="text-green-300" />
                   <a href="tel:9870220973" className="hover:text-white transition-colors">
                     9870220973
                   </a>
                 </div>
-                <div className="flex items-center space-x-3 text-gray-300">
-                  <Mail size={18} className="text-blue-400" />
+                <div className="flex items-center space-x-3 text-gray-200">
+                  <Mail size={18} className="text-blue-300" />
                   <a href="mailto:sid240711@gmail.com" className="hover:text-white transition-colors">
                     sid240711@gmail.com
                   </a>
                 </div>
-                <div className="flex items-start space-x-3 text-gray-300">
-                  <MapPin size={18} className="text-purple-400 mt-0.5" />
+                <div className="flex items-start space-x-3 text-gray-200">
+                  <MapPin size={18} className="text-purple-300 mt-0.5" />
                   <span className="text-sm">
                     Vill. Bharthal, Dwarka Sec-26,<br />
                     South West Delhi 110077
@@ -76,10 +77,10 @@ const Footer = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex items-center space-x-2 text-gray-400"
+              className="flex items-center space-x-2 text-gray-300"
             >
               <span>{t('footer.madeWith')}</span>
-              <Heart size={16} className="text-red-400 animate-pulse" />
+              <Heart size={16} className="text-red-300 animate-pulse" />
               <span>{t('footer.using')}</span>
             </motion.div>
           </div>

@@ -63,7 +63,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-gray-800 dark:to-purple-900/20">
+    <section id="projects" className="py-20 bg-gradient-to-br from-purple-50/30 via-white to-indigo-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-purple-900/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -90,7 +90,7 @@ const Projects = () => {
             <motion.article
               key={index}
               variants={itemVariants}
-              className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600"
+              className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-gray-200/50 dark:border-gray-700/50 hover:border-purple-300/70 dark:hover:border-purple-600/70 hover:bg-white dark:hover:bg-gray-800"
               whileHover={{ y: -8, scale: 1.02 }}
               onClick={() => setSelectedProject(index)}
             >
@@ -127,14 +127,14 @@ const Projects = () => {
                   {project.tech.slice(0, 3).map((tech, techIndex) => (
                     <motion.span
                       key={techIndex}
-                      className="px-3 py-1 bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/30 dark:to-indigo-900/30 text-purple-700 dark:text-purple-300 text-sm rounded-full font-medium border border-purple-200 dark:border-purple-700"
+                      className="px-3 py-1 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 text-purple-700 dark:text-purple-300 text-sm rounded-full font-medium border border-purple-200/50 dark:border-purple-700/50 hover:from-purple-100 hover:to-indigo-100 dark:hover:from-purple-900/30 dark:hover:to-indigo-900/30 transition-colors"
                       whileHover={{ scale: 1.05 }}
                     >
                       {tech}
                     </motion.span>
                   ))}
                   {project.tech.length > 3 && (
-                    <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-sm rounded-full font-medium">
+                    <span className="px-3 py-1 bg-gray-50 dark:bg-gray-700/50 text-gray-600 dark:text-gray-400 text-sm rounded-full font-medium border border-gray-200/50 dark:border-gray-600/50">
                       +{project.tech.length - 3} more
                     </span>
                   )}

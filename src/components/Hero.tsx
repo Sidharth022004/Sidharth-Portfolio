@@ -104,15 +104,15 @@ const Hero = ({ scrollToSection }: HeroProps) => {
   }, [taglines.length]);
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 bg-gradient-to-br from-blue-50/50 via-white to-purple-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-blue-900/20">
       {/* Vanta.js Topology Background */}
       <div 
         ref={vantaRef}
-        className="absolute inset-0 bg-background"
+        className="absolute inset-0 opacity-30 dark:opacity-50"
       />
       
       {/* Minimal overlay to maintain text readability */}
-      <div className="absolute inset-0 bg-black/10" />
+      <div className="absolute inset-0 bg-white/20 dark:bg-black/20" />
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
