@@ -99,7 +99,7 @@ const Index = () => {
         <Testimonials />
         <FAQ />
         <Contact />
-        <Footer />
+        <Footer scrollToSection={scrollToSection} />
         <FloatingCTA scrollToSection={scrollToSection} />
         <BackToTop />
         <AIChatbot />
